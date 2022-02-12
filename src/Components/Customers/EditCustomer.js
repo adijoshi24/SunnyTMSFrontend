@@ -1,0 +1,171 @@
+import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import {
+  catchError,
+  FooterHelper,
+  ModalCloseHelper,
+  onChangeHelper,
+  SelectHelper,
+  TextInputHelper,
+} from "../HelperCells";
+
+const EditCustomer = (props) => {
+  const [modal, setModal] = useState(props.showEditModal);
+  const [customer, setCustomer] = useState(props.CustomerDetail);
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({ modal: nextProps.showEditModal });
+  // }
+  //Onchange
+  const onChange = (e) => {
+    onChangeHelper(customer, setCustomer, e);
+  };
+  // Edit Password Function
+  const editCustomer = (e) => {
+    e.preventDefault();
+    let data = customer;
+    if (customer.password == customer.confirmPassword) {
+      axios
+        .post("http://localhost:5000/api/customer/edit-customer", data)
+        .then((res) => {
+          if (res.status == 200) {
+            toast.success("Customer updated Successfully!", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            props.handleEditCancel();
+            props.allCustomerList();
+          } else {
+            toast.error("Customer updated Unsuccessful!", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+          }
+        })
+        .catch((err) => {
+          catchError(err);
+        });
+    } else {
+      toast.error("Passwords do not match!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+  // Modal box Cancel function
+  const handleEditCancel = () => {
+    props.handleEditCancel();
+  };
+  const deleteCustomer = (e, id) => {
+    e.preventDefault();
+    console.log("id", id);
+    setModal(false);
+    let data = {
+      id,
+    };
+    axios
+      .post("http://localhost:5000/api/customer/delete-customer", data)
+      .then((res) => {
+        if (res.status == 200) {
+          toast.success("Customer Rep deleted successfully!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          props.handleEditCancel();
+          props.allCustomerList();
+        } else {
+          toast.error("Customer Rep not deleted!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        catchError(err);
+      });
+  };
+
+  return (
+    <Modal show={modal} onHide={handleEditCancel}>
+      <form encType="multipart/form-data">
+        <Modal.Body>
+          <ModalCloseHelper clickFunc={handleEditCancel} />
+          <span className="titleAdd">Customer Name</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Customer Name"}
+            name={"customerFullName"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.customerFullName}
+          />
+          <br />
+          <span className="titleAdd">Shipping Manager</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Shipping Manager"}
+            name={"shippingManager"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.shippingManager}
+          />
+          <br />
+          <span className="titleAdd">Phone Number</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Phone Number"}
+            name={"phone"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.phone}
+          />
+          <br />
+          <span className="titleAdd">Email</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Email"}
+            name={"email"}
+            type={"email"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.email}
+          />
+          <br />
+          <span className="titleAdd">Account Payable</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Account Payable"}
+            name={"accountPayable"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.accountPayable}
+          />
+          <br />
+          <span className="titleAdd">Account Payable Email</span>
+          <TextInputHelper
+            style={{ marginBottom: "15px" }}
+            placeholderTxt={"Account Payable Email"}
+            name={"accountPayableEmail"}
+            onChangeFunc={onChange}
+            defaultValueField={customer.accountPayableEmail}
+          />
+          <br />
+          {props.customerRep.role == 1 && (
+            <>
+              <span className="titleAdd">Customer Rep</span>
+              <SelectHelper
+                name={"customerRep"}
+                onChangeFunc={onChange}
+                placeholderTxt={customer.customerRep}
+                options={
+                  props.allCustomerReps &&
+                  props.allCustomerReps.map((customerRep) => (
+                    <option value={customerRep.name}>{customerRep.name}</option>
+                  ))
+                }
+              />
+            </>
+          )}
+        </Modal.Body>
+        <FooterHelper
+          // deleteRecord={(e) => deleteCustomer(e, customer._id)}
+          editRecord={(e) => editCustomer(e)}
+        />
+      </form>
+    </Modal>
+  );
+};
+
+export default EditCustomer;

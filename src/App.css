@@ -1,0 +1,363 @@
+html,
+body {
+  height: 100vh;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+.App {
+  text-align: center;
+  color: black;
+}
+#root,
+.App {
+  height: 100%;
+}
+
+.signup {
+  margin: 0 !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  transform: translate(-50%, -50%) !important;
+}
+.login {
+  text-align: center;
+  /* margin-top: 15%; */
+}
+.loginModal > .modal-dialog {
+  /* width: 450px; */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.loginModal > .modal-dialog > .modal-content {
+  /* height: 500px; */
+  height: 100vh;
+  width: 100vw !important;
+  /* border-radius: 15px !important; */
+}
+.loginTextFields {
+  margin-bottom: 10px !important;
+  width: 300px !important;
+}
+.MuiOutlinedInput-notchedOutline {
+  border: none;
+  color: #f5292f !important;
+}
+
+.Mui-required {
+  color: #f5292f !important;
+}
+.loginButton,
+.forgotButton,
+.signupButton {
+  color: #f5292f !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  margin-top: 10px !important;
+  cursor: pointer !important;
+}
+.signupImage {
+  margin-left: -203px !important;
+  width: 97px !important;
+  height: 28% !important;
+}
+/* Toast */
+.Toastify__toast-body {
+  white-space: pre-line;
+}
+.tableContent {
+  background-color: white;
+  max-width: 83%;
+  /* padding: 18px; */
+  margin-left: 230px;
+  /* margin-top: 15px !important; */
+  border-radius: 7px;
+  height: 100vh;
+  overflow: auto;
+}
+.topBar {
+  background-color: white !important;
+  height: 60px;
+  display: flex;
+  justify-content: start;
+  top: 10px;
+  max-width: 83%;
+  padding: 18px;
+  /* margin-left: 230px; */
+  /* margin-top: 10px !important; */
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+.home,
+.reports,
+.products {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.addButton:hover {
+  float: right;
+  color: #f5292f;
+  text-decoration: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: white;
+  height: 31px;
+  border-radius: 3px;
+  border: 1px solid #f5292f;
+}
+.addButton {
+  color: #ffffff;
+  background: #f5292f;
+  border-radius: 3px;
+
+  float: right;
+  text-decoration: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: auto;
+  min-width: 135px;
+  height: 31px;
+  border: 1px solid #f5292f;
+  margin-right: 2%;
+}
+.dropdown,
+.dropend,
+.dropstart,
+.dropup,
+.order-4 {
+  position: initial;
+}
+.col-md-6,
+.col-xs-6,
+.col-sm-6,
+.col-lg-6 {
+  width: 10%;
+}
+.react-bootstrap-table-pagination-list {
+  margin-right: 20px;
+  margin-left: 15px !important;
+}
+.react-bootstrap-table-pagination {
+  justify-content: space-between !important;
+}
+.tableButtons {
+  background: white;
+  border-radius: 10px;
+  color: #f5292f;
+  border: 1px solid;
+}
+.tableButtons:hover {
+  background: white;
+  border-radius: 10px;
+  color: #c9070e;
+  border: 1.22px solid;
+}
+.dateText {
+  /* display: block !important; */
+  width: 90% !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  margin-left: 5% !important;
+  line-height: 1.75rem !important;
+  color: #212529 !important;
+  margin: auto;
+  /* background-color: #fff; */
+  background-clip: padding-box !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 1px solid lightgrey !important;
+  padding: 4px 5px 4px 8px !important;
+}
+.selectText {
+  /* display: block !important; */
+  width: 90% !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  margin-left: 5% !important;
+  line-height: 1.75rem !important;
+  color: #212529 !important;
+  margin: auto;
+  /* background-color: #fff; */
+  background-clip: padding-box !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 1px solid lightgrey !important;
+  padding: 0px 5px 0px 9px !important;
+}
+.inputText {
+  display: block !important;
+  width: 90% !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5rem !important;
+  color: #212529 !important;
+  margin: auto !important;
+  /* background-color: #fff; */
+  background-clip: padding-box !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 1px solid lightgrey !important;
+  padding: 8px !important;
+  /* border-bottom: 2px solid #F5292F !important; */
+}
+
+.editLoadSelect {
+  width: 100% !important;
+  /* margin-left: auto !important; */
+  border: 1.2px solid #a4c9ee !important;
+  border-radius: 5px;
+}
+#disabled {
+  pointer-events: none !important;
+  border: 1.2px solid #03030357 !important;
+  background-color: rgb(235, 231, 231);
+}
+.modal-content {
+  width: 700px !important ;
+}
+.buttonFooterCustomerRep {
+  background-color: white;
+  color: #f5292f;
+  border: 2px solid #f5292f;
+}
+.buttonFooterEditCR {
+  background-color: white;
+  color: #f5292f;
+  border: 2px solid #f5292f;
+  margin-right: 10px;
+  width: 100px;
+}
+.editCustomerRep > .modal-dialog > .modal-content {
+  width: 700px;
+}
+.addLoad > .modal-dialog > .modal-content {
+  width: 700px;
+}
+.editLoad > .modal-dialog > .modal-content {
+  width: 80vw !important;
+}
+.editLoad > .modal-dialog {
+  /* margin-left: 17% !important; */
+  justify-content: center;
+  display: grid;
+}
+.inputText::placeholder {
+  color: rgb(134, 133, 133);
+}
+.inputTextArea {
+  border: 1px solid black !important;
+  display: block !important;
+  width: 90% !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: #212529 !important;
+  /* background-color: #fff; */
+  background-clip: padding-box !important;
+  border: 1px solid #ced4da !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  margin: auto !important;
+}
+.loadModalDirectionButton {
+  color: #f5292f;
+  width: 25px;
+  height: 25px;
+}
+
+.addSubmitButton {
+  background-color: #f5292f;
+  color: white;
+  font-weight: 400 !important;
+  cursor: pointer !important;
+  border-radius: 20px;
+  border: 1px solid white;
+  padding: 5px 15px 5px 15px;
+}
+.addSubmitButton:hover {
+  color: #f5292f;
+  background-color: white;
+  border: 1px solid #f5292f;
+}
+.modalClose {
+  margin-left: auto;
+  margin-right: 50px;
+  cursor: pointer !important;
+}
+.timepicker > .MuiInputBase-root {
+  width: 90%;
+  margin: auto;
+}
+.timepicker {
+  width: 100%;
+}
+.MuiInput-underline:after {
+  transform: scaleX(1);
+  border-bottom: 2px solid #f5292f !important;
+}
+.MuiInput-underline:before {
+  border-bottom: 2px solid #f5292f !important;
+}
+.editLoadColumns {
+  height: auto;
+}
+.editInput {
+  margin-bottom: 10px !important;
+}
+.pickupDetails,
+.dropDetails {
+  text-align: initial;
+  display: grid;
+  justify-content: center;
+}
+.elementContainer5 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.elementContainer10 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.MuiSelect-select.MuiSelect-select {
+  width: 100% !important;
+}
+td {
+  word-break: break-all;
+}
+.titleAdd {
+  margin-left: 5%;
+  margin-top: 10px;
+}
+
+.logoMain {
+  font-family: pacifico, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f5292f;
+  padding-top: 20px;
+}
+.page-item {
+  cursor: pointer;
+}
+
+.page-item:hover {
+  cursor: pointer;
+}
+.css-1d1r5q-MuiFormHelperText-root {
+  margin: -31px 0 -10px 6.3% !important;
+  font-size: 1rem !important;
+}
