@@ -7,9 +7,9 @@ import { HiOutlineMail } from "react-icons/hi";
 
 export const SidebarData = [
   {
-    title: "Dashboard",
-    path: "/dashboard",
-    icon: <AiOutlineHome />,
+    title: "Loads",
+    path: "/loads",
+    icon: <ImStack />,
     cName: "nav-text",
     userRole: 1, //Means everyone has permission to view this. Else role should be 2
   },
@@ -21,27 +21,6 @@ export const SidebarData = [
     userRole: 1, //Means everyone has permission to view this. Else role should be 2
   },
   {
-    title: "Operations Team",
-    path: "/operations-team",
-    icon: <AiOutlineCalendar />,
-    cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
-  },
-  {
-    title: "Loads",
-    path: "/loads",
-    icon: <ImStack />,
-    cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
-  },
-  {
-    title: "Invoices",
-    path: "/invoices",
-    icon: <HiOutlineMail />,
-    cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
-  },
-  {
     title: "Customer Reps",
     path: "/customer-reps",
     icon: <HiOutlineMail />,
@@ -49,10 +28,31 @@ export const SidebarData = [
     userRole: 2, //Means customer Reps with role==2 do not have permission to view this
   },
   {
-    title: "Carriers",
-    path: "/carriers",
-    icon: <HiOutlineMail />,
+    title: "Operations Reps",
+    path: "/operations-reps",
+    icon: <AiOutlineCalendar />,
     cName: "nav-text",
     userRole: 1, //Means everyone has permission to view this. Else role should be 2
   },
+  // {
+  //   title: "Dashboard",
+  //   path: "/dashboard",
+  //   icon: <AiOutlineHome />,
+  //   cName: "nav-text",
+  //   userRole: 1, //Means everyone has permission to view this. Else role should be 2
+  // },
+  // {
+  //   title: "Invoices",
+  //   path: "/invoices",
+  //   icon: <HiOutlineMail />,
+  //   cName: "nav-text",
+  //   userRole: 1, //Means everyone has permission to view this. Else role should be 2
+  // },
+  // {
+  //   title: "Carriers",
+  //   path: "/carriers",
+  //   icon: <HiOutlineMail />,
+  //   cName: "nav-text",
+  //   userRole: 1, //Means everyone has permission to view this. Else role should be 2
+  // },
 ];

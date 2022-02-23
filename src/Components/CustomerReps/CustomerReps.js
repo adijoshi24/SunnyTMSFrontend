@@ -55,6 +55,7 @@ const CustomerReps = (props) => {
   const myData =
     allCustomerReps &&
     allCustomerReps.map((item, i) => ({
+      role: item.role == 2 ? "Customer Rep" : "item.role",
       name: item.name,
       phone: item.phone,
       email: item.email,

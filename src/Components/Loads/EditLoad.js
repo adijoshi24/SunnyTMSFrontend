@@ -1,13 +1,13 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { AiFillEdit, AiFillDelete, AiOutlineArrowDown } from "react-icons/ai";
-import { FiEdit } from "react-icons/fi";
+import { AiOutlineArrowDown } from "react-icons/ai";
 import { GrLinkNext } from "react-icons/gr";
-import MenuItem from "@material-ui/core/MenuItem";
-import TextField from "@material-ui/core/TextField";
+import { FaTools } from "react-icons/fa";
+import { MdContentCopy } from "react-icons/md";
+import { MenuItem, TextField } from "@material-ui/core";
 import { IconContext } from "react-icons";
 import { useSelector } from "react-redux";
 import {
@@ -15,13 +15,11 @@ import {
   FooterHelper,
   ModalCloseHelper,
   ModalSelectHelper,
-  MultiSelectorHelper,
   onChangeHelper,
-  statesUSA,
-  TextAreaHelper,
-  TextInputHelper,
 } from "../HelperCells";
 import { makeStyles } from "@material-ui/core/styles";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import TimePicker from "@mui/lab/TimePicker";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid lightgrey",
     padding: "4px 5px",
   },
+  input: {
+    selectColor: "red",
+  },
 }));
 
 const EditLoad = (props) => {
@@ -53,12 +54,10 @@ const EditLoad = (props) => {
   const [accessorials, setAccessorials] = useState([]);
   const user = useSelector((state) => state.Login);
   const allStatus = [
-    "Arrived at Shipper",
-    "Loaded and Moving",
-    "Arrived at Receiver",
-    "Unloaded at Receiver",
-    "Cancelled",
-    "Deliver",
+    "Arrived at Pickup",
+    "Picked Up",
+    "Arrived at Delivery",
+    "Delivered",
   ];
   const allAccessorials = [
     "Lumper by Carrier",
@@ -70,7 +69,7 @@ const EditLoad = (props) => {
   //  componentWillReceiveProps(nextProps) {
   //     setState({ modal: nextProps.showEditModal });
   //   }
-  console.log("loadDetail", loadDetail);
+  // console.log("loadDetail", loadDetail);
   const onChange = (e) => {
     onChangeHelper(loadDetail, setLoadDetail, e);
   };
@@ -123,13 +122,40 @@ const EditLoad = (props) => {
         catchError(err);
       });
   };
+  // Duplicate Load Function
+  const duplicateLoad = (e) => {
+    e.preventDefault();
+    const cloneloadDetail = (({ _id, __v, ...o }) => o)(loadDetail); // remove b and c
+    let payload = {
+      ...cloneloadDetail,
+      loadID: Math.round(Math.random() * 10000000),
+    };
+    axios
+      .post("http://localhost:5000/api/load/add-load", payload)
+      .then((res) => {
+        if (res.status == 200) {
+          toast.success("Load Duplicated Successfully!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          props.handleEditCancel();
+          props.loads();
+        } else {
+          toast.error("Load Duplication Unsuccessful!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((err) => {
+        catchError(err);
+      });
+  };
   // Modal box Cancel function
   const handleEditCancel = () => {
     props.handleEditCancel();
   };
+  // Delete Load Function
   const deleteLoad = (e, id) => {
     e.preventDefault();
-    console.log("id", id);
     setModal(false);
     let data = {
       id,
@@ -176,8 +202,10 @@ const EditLoad = (props) => {
                   onChangeFunc={onChange}
                   defaultValueField={loadDetail ? loadDetail.status : "Status"}
                   placeholderTxt={"Status"}
-                  options={allStatus.map((item) => (
-                    <option value={item}>{item}</option>
+                  options={allStatus.map((item, i) => (
+                    <option value={item} key={i}>
+                      {item}
+                    </option>
                   ))}
                 />
               </div>
@@ -187,7 +215,6 @@ const EditLoad = (props) => {
                   // className="inputText"
                   classes={{ root: classes.root }}
                   select
-                  disableUnderline
                   name="accessorials"
                   id="accessorials"
                   placeholder="Accessorials"
@@ -203,8 +230,10 @@ const EditLoad = (props) => {
                     onChange: (e) => multiSelectChange(e),
                   }}
                 >
-                  {allAccessorials.map((item) => (
-                    <MenuItem value={item}>{item}</MenuItem>
+                  {allAccessorials.map((item, i) => (
+                    <MenuItem value={item} key={i}>
+                      {item}
+                    </MenuItem>
                   ))}
                 </TextField>
               </div>
@@ -222,8 +251,10 @@ const EditLoad = (props) => {
                   defaultValueField={
                     loadDetail.customerRep ? loadDetail.customerRep : ""
                   }
-                  options={allCustomerReps.map((customerRep) => (
-                    <option value={customerRep.name}>{customerRep.name}</option>
+                  options={allCustomerReps.map((customerRep, i) => (
+                    <option value={customerRep.name} key={i}>
+                      {customerRep.name}
+                    </option>
                   ))}
                 />
               </div>
@@ -236,8 +267,8 @@ const EditLoad = (props) => {
                   onChangeFunc={onChange}
                   placeholderTxt={loadDetail.customerName}
                   defaultValueField={loadDetail.customerName}
-                  options={allCustomers.map((customer) => (
-                    <option value={customer.customerFullName}>
+                  options={allCustomers.map((customer, i) => (
+                    <option value={customer.customerFullName} key={i}>
                       {customer.customerFullName}
                     </option>
                   ))}
@@ -255,8 +286,10 @@ const EditLoad = (props) => {
                   onChangeFunc={onChange}
                   placeholderTxt={"Not Worked yet"}
                   //   defaultValueField={loadDetail.customerRep}
-                  options={allCustomerReps.map((carrier) => (
-                    <option value={carrier.name}>{carrier.name}</option>
+                  options={allCustomerReps.map((carrier, i) => (
+                    <option value={carrier.name} key={i}>
+                      {carrier.name}
+                    </option>
                   ))}
                 />
               </div>
@@ -338,17 +371,73 @@ const EditLoad = (props) => {
             >
               <h6>Pickup Time</h6>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>Aug, 2 08:00</p>
-                <p style={{ marginLeft: "30px" }}>Time</p>
+                {/* <p>Aug, 2 08:00</p> */}
+                <DesktopDatePicker
+                  // InputProps={{
+                  //   disableUnderline: true,
+                  // }}
+                  value={loadDetail.pickDate}
+                  minDate={new Date("2017-01-01")}
+                  onChange={(date) => pickDateChange(date)}
+                  renderInput={(params) => (
+                    <TextField className={"dateText"} {...params} />
+                  )}
+                  InputProps={{ className: classes.input }}
+                />
+                {/* <p style={{ marginLeft: "30px" }}>Time</p> */}
+                <TimePicker
+                  // InputProps={{
+                  //   disableUnderline: true,
+                  // }}
+                  name="pickTime"
+                  format="24hr"
+                  hintText="00:00"
+                  onChange={(value) => onChangePickTime(value)}
+                  value={loadDetail.pickTime}
+                  fullWidth
+                  renderInput={(params) => (
+                    <TextField className={"dateText"} {...params} />
+                  )}
+                  InputProps={{ className: classes.input }}
+                />
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
                   <small>In Time:</small>
-                  <p> ???</p>
+                  {/* <p> ???</p> */}
+                  <TimePicker
+                    // InputProps={{
+                    //   disableUnderline: true,
+                    // }}
+                    // name="pickTime"
+                    format="24hr"
+                    hintText="00:00"
+                    // onChange={(value) => onChangePickTime(value)}
+                    // value={loadDetail.pickTime}
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField className={"dateText"} {...params} />
+                    )}
+                    InputProps={{ className: classes.input }}
+                  />
                 </div>
                 <div>
                   <small>Out Time: </small>
-                  <p style={{ marginLeft: "20px" }}>???</p>
+                  {/* <p style={{ marginLeft: "20px" }}>???</p> */}
+                  <TimePicker
+                    // InputProps={{
+                    //   disableUnderline: true,
+                    // }}
+                    // name="pickTime"
+                    format="24hr"
+                    hintText="00:00"
+                    // onChange={(value) => onChangePickTime(value)}
+                    // value={loadDetail.pickTime}
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField className={"dateText"} {...params} />
+                    )}
+                  />
                 </div>
               </div>
             </div>
@@ -377,17 +466,70 @@ const EditLoad = (props) => {
             >
               <h6>Drop Time</h6>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>Aug, 2 08:00</p>
-                <p style={{ marginLeft: "20px" }}>Time</p>
+                {/* <p>Aug, 2 08:00</p> */}
+                <DesktopDatePicker
+                  // InputProps={{
+                  //   disableUnderline: true,
+                  // }}
+                  value={loadDetail.dropDate}
+                  minDate={new Date("2017-01-01")}
+                  onChange={(date) => dropDateChange(date)}
+                  renderInput={(params) => (
+                    <TextField className={"dateText"} {...params} />
+                  )}
+                />
+                {/* <p style={{ marginLeft: "20px" }}>Time</p> */}
+                <TimePicker
+                  // InputProps={{
+                  //   disableUnderline: true,
+                  // }}
+                  name="dropTime"
+                  format="24hr"
+                  hintText="00:00"
+                  onChange={(value) => onChangeDropTime(value)}
+                  value={loadDetail.dropTime}
+                  fullWidth
+                  renderInput={(params) => (
+                    <TextField className={"dateText"} {...params} />
+                  )}
+                />
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
                   <small>In Time:</small>
-                  <p> ???</p>
+                  {/* <p> ???</p> */}
+                  <TimePicker
+                    // InputProps={{
+                    //   disableUnderline: true,
+                    // }}
+                    // name="pickTime"
+                    format="24hr"
+                    hintText="00:00"
+                    // onChange={(value) => onChangePickTime(value)}
+                    // value={loadDetail.pickTime}
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField className={"dateText"} {...params} />
+                    )}
+                  />
                 </div>
                 <div>
                   <small>Out Time: </small>
-                  <p style={{ marginLeft: "20px" }}>???</p>
+                  {/* <p style={{ marginLeft: "20px" }}>???</p> */}
+                  <TimePicker
+                    // InputProps={{
+                    //   disableUnderline: true,
+                    // }}
+                    // name="pickTime"
+                    format="24hr"
+                    hintText="00:00"
+                    // onChange={(value) => onChangePickTime(value)}
+                    // value={loadDetail.pickTime}
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField className={"dateText"} {...params} />
+                    )}
+                  />
                 </div>
               </div>
             </div>
@@ -458,16 +600,16 @@ const EditLoad = (props) => {
               cursor: "pointer",
               position: "absolute",
             }}
-            onClick={editLoad}
           >
             <IconContext.Provider
               value={{
-                color: "#0098DB",
+                color: "#F5292F",
                 size: "30px",
               }}
             >
               <div>
-                <FiEdit />
+                <MdContentCopy onClick={duplicateLoad} />
+                <FaTools style={{ marginLeft: "20px" }} onClick={editLoad} />
               </div>
             </IconContext.Provider>
           </span>

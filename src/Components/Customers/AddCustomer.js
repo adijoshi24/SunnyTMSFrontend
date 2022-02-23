@@ -9,10 +9,21 @@ import {
   onChangeHelper,
   SelectHelper,
   TextInputHelper,
-  SelectHelperMUI,
 } from "../HelperCells";
 import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import { BsChevronDown } from "react-icons/bs";
+import { TextField, makeStyles } from "@material-ui/core";
+const usePlaceholderStyles = makeStyles((theme) => ({
+  placeholder: {
+    color: "#aaa",
+  },
+}));
 
+const Placeholder = ({ children }) => {
+  const classes = usePlaceholderStyles();
+  return <div className={classes.placeholder}>{children}</div>;
+};
 const AddCustomer = (props) => {
   const [modal, setModal] = useState(props.showAddModal);
   const [newCustomer, setNewCustomer] = useState({
@@ -62,63 +73,57 @@ const AddCustomer = (props) => {
         <form encType="multipart/form-data">
           <Modal.Body>
             <ModalCloseHelper clickFunc={handleCancel} />
-            <span className="titleAdd">Customer Name</span>
             <TextInputHelper
               placeholderTxt={"Customer Name"}
               name={"customerFullName"}
               onChangeFunc={onChange}
+              title={"Customer Name"}
             />
-            <br />
-            <span className="titleAdd">Shipping Manager</span>
             <TextInputHelper
               placeholderTxt={"Shipping Manager"}
               name={"shippingManager"}
               onChangeFunc={onChange}
+              title={"Shipping Manager"}
             />
-            <br />
-            <span className="titleAdd">Phone Number</span>
             <TextInputHelper
               placeholderTxt={"Phone Number"}
               name={"phone"}
               onChangeFunc={onChange}
+              title={"Phone Number"}
             />
-            <br />
-            <span className="titleAdd">Email</span>
             <TextInputHelper
               placeholderTxt={"Email"}
               name={"email"}
               type={"email"}
               onChangeFunc={onChange}
+              title={"Email"}
             />
-            <br />
-            <span className="titleAdd">Account Payable</span>
             <TextInputHelper
               placeholderTxt={"Account Payable"}
               name={"accountPayable"}
               onChangeFunc={onChange}
+              title={"Account Payable"}
             />
-            <br />
-            <span className="titleAdd">Account Payable Email</span>
             <TextInputHelper
               placeholderTxt={"Account Payable Email"}
               name={"accountPayableEmail"}
               onChangeFunc={onChange}
+              title={"Account Payable Email"}
             />
-            <br />
             {props.customerRep.role == 1 && (
               <>
                 <span className="titleAdd">Customer Rep</span>
-                <SelectHelperMUI
+                <SelectHelper
                   name={"customerRep"}
                   onChangeFunc={onChange}
                   placeholderTxt={props.customerRep.name}
                   style={{ margin: "auto", width: "90%" }}
                   options={
                     props.allCustomerReps &&
-                    props.allCustomerReps.map((customerRep) => (
-                      <MenuItem value={customerRep.name}>
+                    props.allCustomerReps.map((customerRep, i) => (
+                      <option value={customerRep.name} key={i}>
                         {customerRep.name}
-                      </MenuItem>
+                      </option>
                     ))
                   }
                 />

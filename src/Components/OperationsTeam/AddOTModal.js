@@ -73,37 +73,33 @@ const AddOTModal = (props) => {
                 <option value="Operations Manager">Operations Manager</option>
               </>
             }
-          />{" "}
-          <span className="titleAdd">Name</span>
+          />
           <TextInputHelper
             placeholderTxt={"Name"}
             name={"name"}
             onChangeFunc={onChange}
+            title={"Name"}
           />
-          <br />
-          <span className="titleAdd">Phone Number</span>
           <TextInputHelper
             placeholderTxt={"Phone Number"}
             name={"phone"}
             onChangeFunc={onChange}
+            title={"Phone Number"}
           />
-          <br />
-          <span className="titleAdd">Email</span>
           <TextInputHelper
             placeholderTxt={"Email"}
             name={"email"}
             type={"email"}
             onChangeFunc={onChange}
+            title={"Email"}
           />
-          <br />
-          <span className="titleAdd">Password</span>
           <TextInputHelper
             placeholderTxt={"Select a Password"}
             name={"password"}
             type={"password"}
             onChangeFunc={onChange}
+            title={"Password"}
           />
-          <br />
           {props.customerRep.role == 1 && (
             <>
               <span className="titleAdd">Customer Rep</span>
@@ -113,8 +109,10 @@ const AddOTModal = (props) => {
                 placeholderTxt={props.customerRep.name}
                 options={
                   props.allCustomerReps &&
-                  props.allCustomerReps.map((customerRep) => (
-                    <option value={customerRep.name}>{customerRep.name}</option>
+                  props.allCustomerReps.map((customerRep, i) => (
+                    <option value={customerRep.name} key={i}>
+                      {customerRep.name}
+                    </option>
                   ))
                 }
               />

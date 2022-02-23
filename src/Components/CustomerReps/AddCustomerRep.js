@@ -63,40 +63,32 @@ const AddCustomerRep = (props) => {
       <form encType="multipart/form-data">
         <Modal.Body>
           <ModalCloseHelper clickFunc={handleCancel} />
-          <span className="titleAdd">Full Name</span>
           <TextInputHelper
-            style={{ marginBottom: "20px" }}
             placeholderTxt={"Enter your Full Name"}
             name={"name"}
             onChangeFunc={onChange}
+            title={"Full Name"}
           />
-          <br />
-          <span className="titleAdd">Phone Number</span>
           <TextInputHelper
-            style={{ marginBottom: "20px" }}
             placeholderTxt={"Enter your Phone Number"}
             name={"phone"}
             onChangeFunc={onChange}
+            title={"Phone Number"}
           />
-          <br />
-          <span className="titleAdd">Email Id</span>
           <TextInputHelper
-            style={{ marginBottom: "20px" }}
             placeholderTxt={"Enter your Email Id"}
             name={"email"}
             type={"email"}
             onChangeFunc={onChange}
+            title={"Email Id"}
           />
-          <br />
-          <span className="titleAdd">Password</span>
           <TextInputHelper
-            style={{ marginBottom: "20px" }}
             placeholderTxt={"Select a Password"}
             name={"password"}
             type={"password"}
             onChangeFunc={onChange}
-          />{" "}
-          <br />
+            title={"Password"}
+          />
         </Modal.Body>
         <div style={{ display: "flex", marginBottom: "20px" }}>
           <center style={{ marginLeft: "auto", marginRight: "auto" }}>

@@ -45,9 +45,11 @@ export const TextInputHelper = ({
   style,
   editLoad,
   disabled,
+  title,
 }) => {
   return (
     <>
+      {title ? <span className="titleAdd">{title}</span> : ""}
       <input
         onChange={onChangeFunc}
         id={disabled ? "disabled" : ""}
@@ -127,7 +129,7 @@ export const SelectHelper = ({
   style,
 }) => {
   return (
-    <>
+    <div style={{ display: "flex" }} className="selectContainer">
       <select
         name={name}
         aria-label="Default select example"
@@ -139,8 +141,8 @@ export const SelectHelper = ({
         <option>{placeholderTxt}</option>
         {options}
       </select>
-      <br></br>
-    </>
+      <BsChevronDown className="selectDownIcon" />
+    </div>
   );
 };
 export const SelectHelperMUI = ({
@@ -156,7 +158,6 @@ export const SelectHelperMUI = ({
   return (
     <>
       <Select
-        labelId="demo-simple-select-helper-label"
         name={name}
         disableUnderline
         className="selectText"

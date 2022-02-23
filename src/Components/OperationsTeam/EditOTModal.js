@@ -103,8 +103,10 @@ const EditOTModal = (props) => {
             onChangeFunc={onChange}
             placeholderTxt={"Role"}
             defaultValueField={newOperationTeam.role}
-            options={allOperationalRoles.map((item) => (
-              <option value={item}>{item}</option>
+            options={allOperationalRoles.map((item, i) => (
+              <option value={item} key={i}>
+                {item}
+              </option>
             ))}
           />
           <br />
@@ -116,8 +118,10 @@ const EditOTModal = (props) => {
               placeholderTxt={newOperationTeam.customerRep}
               options={
                 props.allCustomerReps &&
-                props.allCustomerReps.map((customerRep) => (
-                  <option value={customerRep.name}>{customerRep.name}</option>
+                props.allCustomerReps.map((customerRep, i) => (
+                  <option value={customerRep.name} key={i}>
+                    {customerRep.name}
+                  </option>
                 ))
               }
             />
@@ -132,7 +136,6 @@ const EditOTModal = (props) => {
             onChangeFunc={onChange}
             defaultValueField={newOperationTeam.name}
           />
-          <br />
           <span className="titleAdd">Phone Number</span>
           <TextInputHelper
             placeholderTxt={"Phone Number"}
@@ -140,7 +143,6 @@ const EditOTModal = (props) => {
             onChangeFunc={onChange}
             defaultValueField={newOperationTeam.phone}
           />
-          <br />
           <span className="titleAdd">Email</span>
           <TextInputHelper
             placeholderTxt={"Email"}
@@ -149,7 +151,6 @@ const EditOTModal = (props) => {
             onChangeFunc={onChange}
             defaultValueField={newOperationTeam.email}
           />
-          <br />
           <span className="titleAdd">Password</span>
           <TextInputHelper
             placeholderTxt={"Select a Password"}
@@ -157,7 +158,6 @@ const EditOTModal = (props) => {
             type={"password"}
             onChangeFunc={onChange}
           />
-          <br />
           <br />
         </Modal.Body>
         <FooterHelper

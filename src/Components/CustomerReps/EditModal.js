@@ -100,14 +100,12 @@ const EditModal = (props) => {
             onChangeFunc={onChange}
             defaultValueField={customerRep && customerRep.name}
           />
-          <br></br>
           <TextInputHelper
             placeholderTxt={"Enter your Phone Number"}
             name={"phone"}
             onChangeFunc={onChange}
             defaultValueField={customerRep && customerRep.phone}
           />
-          <br></br>
           <TextInputHelper
             placeholderTxt={"Enter your Email Id"}
             name={"email"}
@@ -115,14 +113,12 @@ const EditModal = (props) => {
             onChangeFunc={onChange}
             defaultValueField={customerRep && customerRep.email}
           />
-          <br></br>
           <TextInputHelper
             placeholderTxt={"Select a Password"}
             name={"password"}
             type={"password"}
             onChangeFunc={onChange}
           />
-          <br></br>
           <TextInputHelper
             placeholderTxt={"Select a Password"}
             name={"confirmPassword"}

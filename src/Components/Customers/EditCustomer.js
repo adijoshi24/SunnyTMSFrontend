@@ -87,61 +87,49 @@ const EditCustomer = (props) => {
       <form encType="multipart/form-data">
         <Modal.Body>
           <ModalCloseHelper clickFunc={handleEditCancel} />
-          <span className="titleAdd">Customer Name</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Customer Name"}
             name={"customerFullName"}
             onChangeFunc={onChange}
             defaultValueField={customer.customerFullName}
+            title={"Customer Name"}
           />
-          <br />
-          <span className="titleAdd">Shipping Manager</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Shipping Manager"}
             name={"shippingManager"}
             onChangeFunc={onChange}
             defaultValueField={customer.shippingManager}
+            title={"Shipping Manager"}
           />
-          <br />
-          <span className="titleAdd">Phone Number</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Phone Number"}
             name={"phone"}
             onChangeFunc={onChange}
             defaultValueField={customer.phone}
+            title={"Phone Number"}
           />
-          <br />
-          <span className="titleAdd">Email</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Email"}
             name={"email"}
             type={"email"}
             onChangeFunc={onChange}
             defaultValueField={customer.email}
+            title={"Email"}
           />
-          <br />
-          <span className="titleAdd">Account Payable</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Account Payable"}
             name={"accountPayable"}
             onChangeFunc={onChange}
             defaultValueField={customer.accountPayable}
+            title={"Account Payable"}
           />
-          <br />
-          <span className="titleAdd">Account Payable Email</span>
           <TextInputHelper
-            style={{ marginBottom: "15px" }}
             placeholderTxt={"Account Payable Email"}
             name={"accountPayableEmail"}
             onChangeFunc={onChange}
             defaultValueField={customer.accountPayableEmail}
+            title={"Account Payable Email"}
           />
-          <br />
           {props.customerRep.role == 1 && (
             <>
               <span className="titleAdd">Customer Rep</span>
@@ -151,8 +139,10 @@ const EditCustomer = (props) => {
                 placeholderTxt={customer.customerRep}
                 options={
                   props.allCustomerReps &&
-                  props.allCustomerReps.map((customerRep) => (
-                    <option value={customerRep.name}>{customerRep.name}</option>
+                  props.allCustomerReps.map((customerRep, i) => (
+                    <option value={customerRep.name} key={i}>
+                      {customerRep.name}
+                    </option>
                   ))
                 }
               />

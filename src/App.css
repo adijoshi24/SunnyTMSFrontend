@@ -173,8 +173,10 @@ body {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  border: 1px solid lightgrey !important;
   padding: 4px 5px 4px 8px !important;
+}
+.border {
+  border: 1px solid lightgrey !important;
 }
 .selectText {
   /* display: block !important; */
@@ -200,7 +202,7 @@ body {
   font-weight: 400 !important;
   line-height: 1.5rem !important;
   color: #212529 !important;
-  margin: auto !important;
+  margin: auto auto 20px auto !important;
   /* background-color: #fff; */
   background-clip: padding-box !important;
   -webkit-appearance: none !important;
@@ -361,3 +363,18 @@ td {
   margin: -31px 0 -10px 6.3% !important;
   font-size: 1rem !important;
 }
+/* Select Helper */
+.selectContainer {
+  display: flex;
+  margin: 0 -7px 0 7px;
+}
+
+.selectDownIcon {
+  position: relative;
+  left: -50px;
+  height: 40px;
+  vertical-align: middle;
+  color: rgb(245, 41, 47);
+  stroke-width: 2;
+}
+/* Select Helper End */

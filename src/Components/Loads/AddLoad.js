@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-
 import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import {
@@ -13,12 +12,10 @@ import {
   ModalCloseHelper,
   onChangeHelper,
   SelectHelper,
-  SelectHelperMUI,
   statesUSA,
   TextAreaHelper,
   TextInputHelper,
 } from "../HelperCells";
-import MenuItem from "@material-ui/core/MenuItem";
 import makeStyles from "@material-ui/styles/makeStyles";
 const useStyles = makeStyles({
   root: {
@@ -133,40 +130,40 @@ const AddLoad = (props) => {
           >
             {/* index 0 (Customer info / load #) */}
             <Carousel.Item>
-              <ModalCloseHelper clickFunc={handleCancel} />
-              <SelectHelperMUI
+              <ModalCloseHelper clickFunc={handleCancel} />{" "}
+              <SelectHelper
                 name={"customerName"}
                 onChangeFunc={onChange}
                 placeholderTxt={"Customer Name"}
                 options={
                   props &&
                   props.allCustomers &&
-                  props.allCustomers.map((customer) => {
+                  props.allCustomers.map((customer, i) => {
                     return props.customerRep.role == 1 ? (
-                      <MenuItem value={customer.customerFullName}>
+                      <option value={customer.customerFullName} key={i}>
                         {customer.customerFullName}
-                      </MenuItem>
+                      </option>
                     ) : (
                       customer.customerRep == props.customerRep.name && (
-                        <MenuItem value={customer.customerFullName}>
+                        <option value={customer.customerFullName} key={i}>
                           {customer.customerFullName}
-                        </MenuItem>
+                        </option>
                       )
                     );
                   })
                 }
               />
               {props.customerRep.role == 1 && (
-                <SelectHelperMUI
+                <SelectHelper
                   name={"customerRep"}
                   onChangeFunc={onChange}
                   placeholderTxt={"Customer Rep"}
                   options={
                     props.allCustomerReps &&
-                    props.allCustomerReps.map((customerRep) => (
-                      <MenuItem value={customerRep.name}>
+                    props.allCustomerReps.map((customerRep, i) => (
+                      <option value={customerRep.name} key={i}>
                         {customerRep.name}
-                      </MenuItem>
+                      </option>
                     ))
                   }
                 />
@@ -176,38 +173,32 @@ const AddLoad = (props) => {
                 name={"loadID"}
                 onChangeFunc={onChange}
                 defaultValueField={newLoad.loadID}
-                style={{ marginBottom: "20px" }}
               />
               <TextInputHelper
                 placeholderTxt={"Customer Amount"}
                 name={"customerAmount"}
                 onChangeFunc={onChange}
-                style={{ marginBottom: "20px" }}
               />
               <TextInputHelper
                 placeholderTxt={"Carrier Amount"}
                 name={"carrierAmount"}
                 onChangeFunc={onChange}
-                style={{ marginBottom: "20px" }}
               />
             </Carousel.Item>
             {/* index 1 (Pickup name,address etc) */}
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Pickup"} />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Shipper Name"}
                 name={"pickShipperName"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Address"}
                 name={"pickAddress"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"City"}
                 name={"pickCity"}
                 onChangeFunc={onChange}
@@ -216,8 +207,8 @@ const AddLoad = (props) => {
                 name={"pickState"}
                 onChangeFunc={onChange}
                 placeholderTxt={"State"}
-                options={statesUSA.map((state) => (
-                  <option value={[state.abbreviation, state.name]}>
+                options={statesUSA.map((state, i) => (
+                  <option value={[state.abbreviation, state.name]} key={i}>
                     {state.name}
                   </option>
                 ))}
@@ -226,12 +217,11 @@ const AddLoad = (props) => {
                 name={"pickState"}
                 onChangeFunc={onChange}
                 placeholderTxt={"State"}
-                options={statesUSA.map((state) => (
-                  <MenuItem value={state.name}>{state.name}</MenuItem>
+                options={statesUSA.map((state,i) => (
+                  <MenuItem value={state.name} key={i}>{state.name}</MenuItem>
                 ))}
               /> */}
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Zip"}
                 name={"pickZip"}
                 onChangeFunc={onChange}
@@ -244,7 +234,7 @@ const AddLoad = (props) => {
                 minDate={new Date("2017-01-01")}
                 onChange={(date) => pickDateChange(date)}
                 renderInput={(params) => (
-                  <TextField className={"dateText"} {...params} />
+                  <TextField className={"dateText border"} {...params} />
                 )}
               />
               <br></br>
@@ -260,7 +250,7 @@ const AddLoad = (props) => {
                 value={newLoad.pickTime}
                 fullWidth
                 renderInput={(params) => (
-                  <TextField className={"dateText"} {...params} />
+                  <TextField className={"dateText border"} {...params} />
                 )}
               />
               <br></br>
@@ -269,93 +259,85 @@ const AddLoad = (props) => {
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Pickup"} />
               {/* <TextInputHelper
-                style={{ marginBottom: "15px" }}
+                
                 placeholderTxt={"Reference#"}
                 name={"pickReferenceId"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
+                
                 placeholderTxt={"PO Number"}
                 name={"pickPONumber"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
+                
                 placeholderTxt={"Stop Type"}
                 name={"pickStopType"}
                 onChangeFunc={onChange}
               /> */}
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Commodity"}
                 name={"pickCommodity"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Weight"}
                 name={"pickWeight"}
                 onChangeFunc={onChange}
               />
-              <SelectHelperMUI
+              <SelectHelper
                 name={"trailerType"}
                 onChangeFunc={onChange}
-                placeholderTxt={"trailerType"}
-                // options={statesUSA.map((state) => (
-                //   <MenuItem value={[state.abbreviation, state.name]}>
-                //     {state.name}
-                //   </MenuItem>
-                // ))}
+                placeholderTxt={"Trailer Type"}
+                options={
+                  <>
+                    <option value="Dry Van">Dry Van</option>
+                    <option value="Reefer">Reefer</option>
+                  </>
+                }
               />
             </Carousel.Item>
             {/* index 3 (PU Number, PO Number, Reference#) */}
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Pickup"} />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"PU Number"}
                 name={"pickPUNumber"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"PO Number"}
                 name={"pickPONumber"}
                 onChangeFunc={onChange}
               />
               {/* <TextInputHelper
-                style={{ marginBottom: "15px" }}
+                
                 placeholderTxt={"Stop Type"}
                 name={"pickStopType"}
                 onChangeFunc={onChange}
               /> */}
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"pickReferenceId1"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"pickReferenceId2"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"pickReferenceId3"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"pickReferenceId4"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"pickReferenceId5"}
                 onChangeFunc={onChange}
@@ -374,19 +356,16 @@ const AddLoad = (props) => {
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Delivery"} />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Receiver Name"}
                 name={"dropReceiverName"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Receiver Address"}
                 name={"dropAddress"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"City"}
                 name={"dropCity"}
                 onChangeFunc={onChange}
@@ -395,14 +374,13 @@ const AddLoad = (props) => {
                 name={"dropState"}
                 onChangeFunc={onChange}
                 placeholderTxt={"State"}
-                options={statesUSA.map((state) => (
-                  <option value={[state.abbreviation, state.name]}>
+                options={statesUSA.map((state, i) => (
+                  <option value={[state.abbreviation, state.name]} key={i}>
                     {state.name}
                   </option>
                 ))}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Zip"}
                 name={"dropZip"}
                 onChangeFunc={onChange}
@@ -416,7 +394,7 @@ const AddLoad = (props) => {
                 value={newLoad.dropDate}
                 onChange={(date) => dropDateChange(date)}
                 renderInput={(params) => (
-                  <TextField className={"dateText"} {...params} />
+                  <TextField className={"dateText border"} {...params} />
                 )}
               />
               <br></br>
@@ -433,7 +411,7 @@ const AddLoad = (props) => {
                 value={newLoad.dropTime}
                 fullWidth
                 renderInput={(params) => (
-                  <TextField className={"dateText"} {...params} />
+                  <TextField className={"dateText border"} {...params} />
                 )}
               />
               <br></br>
@@ -442,49 +420,42 @@ const AddLoad = (props) => {
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Delivery"} />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Delivery Number"}
                 name={"dropDeliveryNumber"}
                 onChangeFunc={onChange}
               />
               {/* <TextInputHelper
-                style={{ marginBottom: "15px" }}
+                
                 placeholderTxt={"Stop Type"}
                 name={"dropStopType"}
                 onChangeFunc={onChange}
               /> */}
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference#"}
                 name={"dropReferenceId1"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"dropReferenceId2"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"dropReferenceId3"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"dropReferenceId4"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"dropReferenceId5"}
                 onChangeFunc={onChange}
               />
               <TextInputHelper
-                style={{ marginBottom: "15px" }}
                 placeholderTxt={"Reference Number"}
                 name={"dropReferenceId6"}
                 onChangeFunc={onChange}

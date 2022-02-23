@@ -18,8 +18,8 @@ class Topbar extends Component {
       case "/customers":
         title = "Customers";
         break;
-      case "/operations-team":
-        title = "Operations Team";
+      case "/operations-reps":
+        title = "Operations Reps";
         break;
       case "/loads":
         title = "Loads";

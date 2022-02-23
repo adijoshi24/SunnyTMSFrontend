@@ -43,7 +43,7 @@ const Login = (props) => {
           toast.success("Login Successful!", {
             position: toast.POSITION.TOP_RIGHT,
           });
-          props.history.push("/dashboard");
+          props.history.push("/loads");
         } else {
           dispatch(signinFailure());
           toast.error("Login Unsuccessful!", {
@@ -66,8 +66,8 @@ const Login = (props) => {
     <Paper
       elevation={3}
       sx={{
-        height: "80vh",
-        width: "30%",
+        height: "500px",
+        width: "410px",
         display: "inline-block",
         marginTop: "60px",
         backgroundColor: "#F7FAFC",
@@ -75,7 +75,7 @@ const Login = (props) => {
     >
       <div
         style={{
-          height: "17vh",
+          height: "106px",
         }}
       >
         <Logo style={{ fontSize: "xx-large", marginTop: "5vh" }} />

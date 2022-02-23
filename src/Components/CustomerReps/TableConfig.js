@@ -1,5 +1,17 @@
 export const columns = [
   {
+    dataField: "role",
+    text: "Role",
+    sort: true,
+    headerStyle: {
+      backgroundColor: "#F6F9FC",
+      fontFamily: "12px Open Sans",
+      color: "#8898AA",
+      fontWeight: "normal",
+      border: "none",
+    },
+  },
+  {
     dataField: "name",
     text: "Full Name",
     sort: true,
@@ -12,8 +24,8 @@ export const columns = [
     },
   },
   {
-    dataField: "phone",
-    text: "Phone Number",
+    dataField: "email",
+    text: "Email",
     sort: true,
     headerStyle: {
       backgroundColor: "#F6F9FC",
@@ -24,8 +36,8 @@ export const columns = [
     },
   },
   {
-    dataField: "email",
-    text: "Email",
+    dataField: "phone",
+    text: "Phone Number",
     sort: true,
     headerStyle: {
       backgroundColor: "#F6F9FC",

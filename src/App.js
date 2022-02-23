@@ -21,7 +21,7 @@ function App() {
             <Sidebar />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/customers" component={Customers} />
-            <Route path="/operations-team" component={OperationsTeam} />
+            <Route path="/operations-reps" component={OperationsTeam} />
             <Route path="/loads" component={Loads} />
             <Route path="/invoices" component={Invoices} />
             <Route path="/customer-reps" component={CustomerReps} />
