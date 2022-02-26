@@ -53,7 +53,6 @@ const Login = (props) => {
       })
       .catch((err) => {
         console.log("err", err.response);
-
         toast.error(
           err && err.response ? err.response.data.msg : "Error Occured",
           {

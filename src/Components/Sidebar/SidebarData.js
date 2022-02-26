@@ -11,28 +11,48 @@ export const SidebarData = [
     path: "/loads",
     icon: <ImStack />,
     cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
+    userRole: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ], //Means everyone has permission to view this. Else role should be 2
   },
   {
     title: "Customers",
     path: "/customers",
     icon: <MdPeopleOutline />,
     cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
+    userRole: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ], //Means everyone has permission to view this. Else role should be 2
   },
   {
     title: "Customer Reps",
     path: "/customer-reps",
     icon: <HiOutlineMail />,
     cName: "nav-text",
-    userRole: 2, //Means customer Reps with role==2 do not have permission to view this
+    userRole: [
+      "admin",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ], //Means customer Reps with role==2 do not have permission to view this
   },
   {
     title: "Operations Reps",
     path: "/operations-reps",
     icon: <AiOutlineCalendar />,
     cName: "nav-text",
-    userRole: 1, //Means everyone has permission to view this. Else role should be 2
+    userRole: ["admin", "customerRep"], //Means everyone has permission to view this. Else role should be 2
   },
   // {
   //   title: "Dashboard",

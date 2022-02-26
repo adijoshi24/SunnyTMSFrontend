@@ -110,21 +110,24 @@ const EditOTModal = (props) => {
             ))}
           />
           <br />
-          <span className="titleAdd">Customer Rep</span>
-          {props.customerRep.role == 1 && (
-            <SelectHelper
-              name={"customerRep"}
-              onChangeFunc={onChange}
-              placeholderTxt={newOperationTeam.customerRep}
-              options={
-                props.allCustomerReps &&
-                props.allCustomerReps.map((customerRep, i) => (
-                  <option value={customerRep.name} key={i}>
-                    {customerRep.name}
-                  </option>
-                ))
-              }
-            />
+
+          {props.customerRep.role == "admin" && (
+            <>
+              <span className="titleAdd">Customer Rep</span>
+              <SelectHelper
+                name={"customerRep"}
+                onChangeFunc={onChange}
+                placeholderTxt={newOperationTeam.customerRep}
+                options={
+                  props.allCustomerReps &&
+                  props.allCustomerReps.map((customerRep, i) => (
+                    <option value={customerRep.name} key={i}>
+                      {customerRep.name}
+                    </option>
+                  ))
+                }
+              />
+            </>
           )}
           <span className="titleAdd">Name</span>
           <TextInputHelper

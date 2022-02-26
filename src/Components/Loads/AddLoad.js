@@ -44,7 +44,7 @@ const AddLoad = (props) => {
   const [newLoad, setNewLoad] = useState({
     pickDate: new Date(),
     dropDate: new Date(),
-    customerRep: props.customerRep.name,
+    customerRep: props.user.name,
     loadID: Math.round(Math.random() * 10000000),
     pickTime: "10:00",
     dropTime: "10:00",
@@ -117,7 +117,6 @@ const AddLoad = (props) => {
     setIndex(index != 0 ? index - 1 : index);
   };
 
-  console.log("newLoad add load", newLoad);
   return (
     <Modal show={modal} onHide={handleCancel} className="addLoad">
       <form encType="multipart/form-data">
@@ -139,12 +138,12 @@ const AddLoad = (props) => {
                   props &&
                   props.allCustomers &&
                   props.allCustomers.map((customer, i) => {
-                    return props.customerRep.role == 1 ? (
+                    return props.user.role == "admin" ? (
                       <option value={customer.customerFullName} key={i}>
                         {customer.customerFullName}
                       </option>
                     ) : (
-                      customer.customerRep == props.customerRep.name && (
+                      customer.customerRep == props.user.name && (
                         <option value={customer.customerFullName} key={i}>
                           {customer.customerFullName}
                         </option>
@@ -153,7 +152,7 @@ const AddLoad = (props) => {
                   })
                 }
               />
-              {props.customerRep.role == 1 && (
+              {props.user.role == "admin" && (
                 <SelectHelper
                   name={"customerRep"}
                   onChangeFunc={onChange}

@@ -18,7 +18,7 @@ const Customers = (props) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [allCustomerReps, setAllCustomerReps] = useState();
   const [allCustomers, setAllCustomers] = useState();
-  const [rowIndex, setRowIndex] = useState(0);
+  const [rowDetails, setRow] = useState(0);
   const user = useSelector((state) => state.Login);
 
   useEffect(() => {
@@ -66,7 +66,8 @@ const Customers = (props) => {
     allCustomers &&
     allCustomers.filter(
       (item) =>
-        user.role == 1 || (user.role == 2 && user.name == item.customerRep)
+        user.role == "admin" ||
+        (user.role == "customerRep" && user.name == item.customerRep)
     );
   const myData =
     myFilteredData &&
@@ -81,7 +82,8 @@ const Customers = (props) => {
     }));
   const tableRowEvents = {
     onClick: (e, row, rowIndex) => {
-      setRowIndex(rowIndex);
+      console.log("e, row, rowIndex", e, row, rowIndex);
+      setRow(row);
       setShowEditModal(true);
     },
   };
@@ -120,7 +122,7 @@ const Customers = (props) => {
       {showEditModal && (
         <EditCustomer
           showEditModal={showEditModal}
-          CustomerDetail={allCustomers[rowIndex]}
+          CustomerDetail={rowDetails}
           handleEditCancel={() => handleEditCancel()}
           allCustomerList={() => allCustomerList()}
           customerRep={user}

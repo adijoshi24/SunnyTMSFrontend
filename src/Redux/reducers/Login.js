@@ -2,7 +2,7 @@ const initialState = {};
 const Login = (state = initialState, action, props) => {
   switch (action.type) {
     case "SIGNIN_SUCCESS":
-      console.log("action", action.user.data.user.name);
+      console.log("action1", action.user);
       return {
         ...state,
         name: action.user.data.user.name,
@@ -10,6 +10,7 @@ const Login = (state = initialState, action, props) => {
         password: action.user.data.user.password,
         role: action.user.data.user.role,
         phone: action.user.data.user.phone,
+        customerRepList: action.user.data.customerRepList,
         auth: true,
       };
     case "SIGNIN_FAILURE":
@@ -17,6 +18,7 @@ const Login = (state = initialState, action, props) => {
         ...state,
       };
     case "LOGOUT":
+      console.log("LOGOUT");
       return {
         state: initialState,
         auth: false,

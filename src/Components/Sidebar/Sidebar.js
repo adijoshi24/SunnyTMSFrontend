@@ -10,7 +10,6 @@ import { Logo } from "../HelperCells";
 
 function Sidebar(props) {
   var user = useSelector((state) => state.Login);
-  console.log("sidebar user", user);
   return (
     <>
       <IconContext.Provider value={{ color: "rgb(83, 80, 80)" }}>
@@ -20,23 +19,12 @@ function Sidebar(props) {
               <Logo style={{ fontSize: "x-large" }} />
             </li>
             {SidebarData.map((item, index) => {
-              if (user.role !== 2) {
+              if (item.userRole.includes(user.role)) {
                 return (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
                       {item.icon}
                       <span className="moduleTitle">{item.title}</span>
-                    </Link>
-                  </li>
-                );
-              } else if (user.role === 2 && item.title !== "Customer Reps") {
-                return (
-                  <li key={index} className={item.cName}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span className="moduleTitle">
-                        {item.title == "Customer Reps" ? "" : item.title}
-                      </span>
                     </Link>
                   </li>
                 );

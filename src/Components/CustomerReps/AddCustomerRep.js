@@ -14,7 +14,7 @@ import {
 const AddCustomerRep = (props) => {
   const [modal, setModal] = useState(props.showAddModal);
   const [newCustomerRep, setNewCustomerRep] = useState({
-    role: 2,
+    role: "customerRep",
     customerRep: props.customerRep,
   });
 

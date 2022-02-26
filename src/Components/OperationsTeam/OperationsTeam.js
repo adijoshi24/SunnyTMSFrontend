@@ -67,7 +67,8 @@ const OperationsTeam = (props) => {
     allOperationsTeams &&
     allOperationsTeams.filter(
       (item) =>
-        user.role == 1 || (user.role == 2 && user.name == item.customerRep)
+        user.role == "admin" ||
+        (user.role == "customerRep" && user.name == item.customerRep)
     );
   const myData =
     myFilteredData &&
@@ -78,7 +79,6 @@ const OperationsTeam = (props) => {
       email: item.email,
       customerRep: item.customerRep,
     }));
-  console.log("allOperationsTeams", allOperationsTeams);
   const tableRowEvents = {
     onClick: (e, row, rowIndex) => {
       console.log("allOperationsTeams[rowIndex]", allOperationsTeams[rowIndex]);
@@ -86,7 +86,6 @@ const OperationsTeam = (props) => {
       setShowEditModal(true);
     },
   };
-  console.log("user", user);
   return (
     <div className="operationsTeam">
       <div className="tableContent">

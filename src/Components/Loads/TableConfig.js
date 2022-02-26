@@ -11,6 +11,14 @@ export const columns = [
   {
     dataField: "loadId",
     text: "Load Number",
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       // fontFamily: "Open Sans, SemiBold",
@@ -27,6 +35,14 @@ export const columns = [
   {
     dataField: "status",
     text: "Status",
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -43,6 +59,14 @@ export const columns = [
     text: "Pick Date",
     // sort: true,
     formatter: dateFormatter,
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -55,6 +79,14 @@ export const columns = [
     dataField: "pick",
     text: "Pickup City/State",
     // sort: true,
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -66,6 +98,14 @@ export const columns = [
   {
     dataField: "drop",
     text: "Drop City/State",
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -79,6 +119,14 @@ export const columns = [
     text: "Drop date",
     // sort: true,
     formatter: dateFormatter,
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -91,6 +139,26 @@ export const columns = [
     dataField: "customerRep",
     text: "Customer Rep",
     // sort: true,
+    role: ["admin"],
+    headerStyle: {
+      backgroundColor: "#F6F9FC",
+      color: "#8898AA",
+      fontWeight: "normal",
+      border: "none",
+      width: "150px",
+    },
+  },
+  {
+    dataField: "carrier",
+    text: "Carrier",
+    // sort: true,
+    role: [
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",
@@ -103,6 +171,14 @@ export const columns = [
     dataField: "customer",
     text: "Customer",
     // sort: true,
+    role: [
+      "admin",
+      "customerRep",
+      "Carrier Operations",
+      "After Hour Operations",
+      "Operations Manager",
+      "Customer Operations",
+    ],
     headerStyle: {
       backgroundColor: "#F6F9FC",
       color: "#8898AA",

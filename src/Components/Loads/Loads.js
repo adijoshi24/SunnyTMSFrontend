@@ -21,12 +21,19 @@ const Loads = (props) => {
   const [allLoads, setAllLoads] = useState();
   const [allCustomers, setAllCustomers] = useState();
   const [allCustomerReps, setAllCustomerReps] = useState();
+  const [OTCR, setOTCR] = useState();
   const [rowIndex, setRowIndex] = useState(0);
   const [id, setId] = useState(0);
   const user = useSelector((state) => state.Login);
   useEffect(() => {
     if (!user.auth) {
       props.history.push("/");
+    }
+    if (
+      user.role == "After Hour Operations" ||
+      user.role == "Customer Operations"
+    ) {
+      getOTCustomerRep();
     }
     loads();
     allCustomerList();
@@ -43,6 +50,19 @@ const Loads = (props) => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+  const getOTCustomerRep = () => {
+    let payload = {
+      name: user.name,
+    };
+    axios
+      .post("http://localhost:5000/api/operations-team/otcrNames", payload)
+      .then((res) => {
+        setOTCR(res.data.customerRepList);
+      })
+      .catch((err) => {
+        catchError(err);
       });
   };
   const allCustomerList = () => {
@@ -80,13 +100,21 @@ const Loads = (props) => {
   };
   const myFilteredData =
     allLoads &&
-    allLoads.filter(
-      (item) =>
-        user.role == 1 ||
-        (user.role == 2 && user.name == item.customerRep) ||
-        user.role == "Carrier Operations" ||
-        user.role == "After Hour Operations"
-    );
+    allLoads.filter((item) => {
+      return (
+        user.role == "admin" ||
+        // user.role == "Carrier Operations" ||
+        (user.role == "After Hour Operations" &&
+          OTCR &&
+          OTCR.includes(item.customerRep)) ||
+        // user.role == "Operations Manager" ||
+        (user.role == "Customer Operations" &&
+          OTCR &&
+          OTCR.includes(item.customerRep)) ||
+        (user.role == "customerRep" && user.name == item.customerRep)
+      );
+    });
+  console.log("user, myFilteredData, allLoads", user, OTCR);
   const myData =
     myFilteredData &&
     myFilteredData.map((item, i) => ({
@@ -110,6 +138,8 @@ const Loads = (props) => {
       setId(allLoads[rowIndex]._id);
     },
   };
+  const myTableHeaders =
+    columns && columns.filter((item) => item.role.includes(user.role));
   return (
     <div className="loads">
       <div className="tableContent">
@@ -125,26 +155,30 @@ const Loads = (props) => {
         >
           <BootstrapTableHelper
             myData={myData ? myData : dummy}
-            columns={columns}
+            columns={myTableHeaders}
             tableRowEvents={tableRowEvents}
           />
         </Paper>
-        <button className="addButton" onClick={() => openAddModal()}>
-          Add Load
-        </button>
+        {user.role != "After Hour Operations" && (
+          <button className="addButton" onClick={() => openAddModal()}>
+            Add Load
+          </button>
+        )}
       </div>
-      {showAddModal && (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <AddLoad
-            showAddModal={showAddModal}
-            allCustomers={allCustomers}
-            handleCancel={() => handleCancel()}
-            loads={() => loads()}
-            customerRep={user}
-            allCustomerReps={allCustomerReps}
-          />
-        </LocalizationProvider>
-      )}
+      {showAddModal &&
+        user.role !=
+          "After Hour Operations"(
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <AddLoad
+                showAddModal={showAddModal}
+                allCustomers={allCustomers}
+                handleCancel={() => handleCancel()}
+                loads={() => loads()}
+                user={user}
+                allCustomerReps={allCustomerReps}
+              />
+            </LocalizationProvider>
+          )}
       {showEditModal && (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <EditLoad
@@ -154,7 +188,7 @@ const Loads = (props) => {
             handleEditCancel={() => handleEditCancel()}
             id={id}
             loads={() => loads()}
-            customerRep={user}
+            user={user}
             allCustomerReps={allCustomerReps}
           />
         </LocalizationProvider>

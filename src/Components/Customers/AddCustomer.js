@@ -110,7 +110,7 @@ const AddCustomer = (props) => {
               onChangeFunc={onChange}
               title={"Account Payable Email"}
             />
-            {props.customerRep.role == 1 && (
+            {props.customerRep.role == "admin" && (
               <>
                 <span className="titleAdd">Customer Rep</span>
                 <SelectHelper
