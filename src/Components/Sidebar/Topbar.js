@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import {Typography} from '@mui/material';
 import { BsBellFill } from "react-icons/bs";
 import { logout } from "../../Redux/actions/actions";
 
@@ -35,8 +36,8 @@ class Topbar extends Component {
     }
     return (
       <div className="topBar">
-        <div>{title}</div>
-        <div style={{ flex: "1" }}></div>
+        <Typography variant='h5'>{title}</Typography>
+        <div style={{flex: "1"}}/>
         <BsBellFill
           style={{
             marginTop: "5px",

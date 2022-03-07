@@ -150,7 +150,6 @@ const Loads = (props) => {
             margin: "2%",
             height: "auto",
             paddingBottom: "20px",
-            width: "1080px",
           }}
         >
           <BootstrapTableHelper
@@ -159,15 +158,15 @@ const Loads = (props) => {
             tableRowEvents={tableRowEvents}
           />
         </Paper>
-        {user.role != "After Hour Operations" && (
+        {user.role !== "After Hour Operations" && (
           <button className="addButton" onClick={() => openAddModal()}>
             Add Load
           </button>
         )}
       </div>
       {showAddModal &&
-        user.role !=
-          "After Hour Operations"(
+        user.role !==
+          "After Hour Operations" && (
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <AddLoad
                 showAddModal={showAddModal}

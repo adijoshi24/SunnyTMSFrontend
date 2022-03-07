@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#212529",
     // marginLeft: "auto",
     backgroundClip: "padding-box",
-    border: "1px solid #ced4da",
     paddingRight: "0px",
     display: "block",
     fontSize: "1rem",
@@ -280,7 +279,7 @@ const EditLoad = (props) => {
               <div className="elementContainer10">
                 <span style={{ marginLeft: "5%" }}>Carrier:</span>
                 <ModalSelectHelper
-                  disabled={user.role == "After Hour Operations" ? true : false}
+                  disabled={user.role === "After Hour Operations"}
                   editLoad={true}
                   name={"carrier"}
                   onChangeFunc={onChange}

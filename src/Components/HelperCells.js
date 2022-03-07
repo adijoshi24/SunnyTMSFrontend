@@ -21,16 +21,16 @@ export const Logo = ({ clickFunc, style }) => {
     </p>
   );
 };
-export const ModalCloseHelper = ({ clickFunc, header }) => {
+export const ModalCloseHelper = ({ clickFunc, header, showClose=false, divStyle={} }) => {
   return (
     <>
-      <div style={{ display: "flex" }}>
-        <center style={{ marginLeft: "auto" }}>
+      <div style={{ display: "flex", ...divStyle }}>
+        <center style={{ margin: "auto" }}>
           <h4>{header}</h4>
         </center>
-        <p className="modalClose" onClick={clickFunc}>
+        {showClose && <p className="modalClose" onClick={clickFunc}>
           X
-        </p>
+        </p>}
       </div>
       <br></br>
     </>
@@ -133,7 +133,7 @@ export const SelectHelper = ({
       <select
         name={name}
         aria-label="Default select example"
-        className="inputText"
+        className="inputText selectInput"
         onChange={onChangeFunc}
         value={defaultValueField}
         style={style ? style : { margin: "auto" }}
@@ -208,9 +208,11 @@ export const TextAreaHelper = ({
   name,
   onChangeFunc,
   defaultValueField,
+                                 label=''
 }) => {
   return (
     <>
+      {label && <label>{label}</label>}
       <textarea
         onChange={onChangeFunc}
         className="inputTextArea"

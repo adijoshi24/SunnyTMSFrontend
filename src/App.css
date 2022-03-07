@@ -71,7 +71,6 @@ body {
 }
 .tableContent {
   background-color: white;
-  max-width: 83%;
   /* padding: 18px; */
   margin-left: 230px;
   /* margin-top: 15px !important; */
@@ -126,6 +125,7 @@ body {
   height: 31px;
   border: 1px solid #f5292f;
   margin-right: 2%;
+  transition: all 0.2s ease-in-out;
 }
 .dropdown,
 .dropend,
