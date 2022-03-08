@@ -11,6 +11,9 @@ import {
   onChangeHelper,
   TextInputHelper,
 } from "../HelperCells";
+import CrossIcon from "../Atoms/CrossIcon";
+import InputField from "../Atoms/form/InputField";
+import { Stack } from "@mui/material";
 
 const EditModal = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
@@ -28,7 +31,7 @@ const EditModal = (props) => {
     e.preventDefault();
     let data = customerRep;
 
-    if (customerRep.password == customerRep.confirmPassword) {
+    if (customerRep.password === customerRep.confirmPassword) {
       axios
         .post("http://localhost:5000/api/customer-rep/edit-customer-rep", data)
         .then((res) => {
@@ -93,38 +96,40 @@ const EditModal = (props) => {
     >
       <form encType="multipart/form-data">
         <Modal.Body>
-          <ModalCloseHelper clickFunc={handleEditCancel} />
-          <TextInputHelper
-            placeholderTxt={"Enter your Full Name"}
-            name={"name"}
-            onChangeFunc={onChange}
-            defaultValueField={customerRep && customerRep.name}
-          />
-          <TextInputHelper
-            placeholderTxt={"Enter your Phone Number"}
-            name={"phone"}
-            onChangeFunc={onChange}
-            defaultValueField={customerRep && customerRep.phone}
-          />
-          <TextInputHelper
-            placeholderTxt={"Enter your Email Id"}
-            name={"email"}
-            type={"email"}
-            onChangeFunc={onChange}
-            defaultValueField={customerRep && customerRep.email}
-          />
-          <TextInputHelper
-            placeholderTxt={"Select a Password"}
-            name={"password"}
-            type={"password"}
-            onChangeFunc={onChange}
-          />
-          <TextInputHelper
-            placeholderTxt={"Select a Password"}
-            name={"confirmPassword"}
-            type={"password"}
-            onChangeFunc={onChange}
-          />
+          <div onClick={handleEditCancel}><CrossIcon style={{ marginBottom: 10 }} /></div>
+          <Stack spacing={3} sx={{p:5}}>
+            <InputField
+              label={"Name"}
+              name={"name"}
+              onChangeFunc={onChange}
+              value={customerRep && customerRep.name}
+            />
+            <InputField
+              label={"Phone Number"}
+              name={"phone"}
+              onChangeFunc={onChange}
+              value={customerRep && customerRep.phone}
+            />
+            <InputField
+              label={"Email"}
+              name={"email"}
+              type={"email"}
+              onChangeFunc={onChange}
+              value={customerRep && customerRep.email}
+            />
+            <InputField
+              label={"Password"}
+              name={"password"}
+              type={"password"}
+              onChangeFunc={onChange}
+            />
+            <InputField
+              label={"Confirm Password"}
+              name={"confirmPassword"}
+              type={"password"}
+              onChangeFunc={onChange}
+            />
+          </Stack>
         </Modal.Body>
         <FooterHelper
           // deleteRecord={(e) => deleteCustomerRep(e, customerRep._id)}

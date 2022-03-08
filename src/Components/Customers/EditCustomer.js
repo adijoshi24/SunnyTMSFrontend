@@ -11,6 +11,7 @@ import {
   SelectHelper,
   TextInputHelper,
 } from "../HelperCells";
+import CrossIcon from '../Atoms/CrossIcon'
 
 const EditCustomer = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
@@ -86,7 +87,7 @@ const EditCustomer = (props) => {
     <Modal show={modal} onHide={handleEditCancel}>
       <form encType="multipart/form-data">
         <Modal.Body>
-          <ModalCloseHelper clickFunc={handleEditCancel} />
+          <div onClick={handleEditCancel}><CrossIcon /></div>
           <TextInputHelper
             placeholderTxt={"Customer Name"}
             name={"customerFullName"}

@@ -378,3 +378,7 @@ td {
   stroke-width: 2;
 }
 /* Select Helper End */
+
+.crossIcon:hover{
+  cursor: pointer;
+}

@@ -8,8 +8,10 @@ import {
   catchError,
   ModalCloseHelper,
   onChangeHelper,
-  TextInputHelper,
 } from "../HelperCells";
+import InputField from "../Atoms/form/InputField";
+import { Stack } from "@mui/material";
+import CrossIcon from "../Atoms/CrossIcon";
 
 const AddCustomerRep = (props) => {
   const [modal, setModal] = useState(props.showAddModal);
@@ -62,33 +64,35 @@ const AddCustomerRep = (props) => {
     >
       <form encType="multipart/form-data">
         <Modal.Body>
-          <ModalCloseHelper clickFunc={handleCancel} />
-          <TextInputHelper
-            placeholderTxt={"Enter your Full Name"}
-            name={"name"}
-            onChangeFunc={onChange}
-            title={"Full Name"}
-          />
-          <TextInputHelper
-            placeholderTxt={"Enter your Phone Number"}
-            name={"phone"}
-            onChangeFunc={onChange}
-            title={"Phone Number"}
-          />
-          <TextInputHelper
-            placeholderTxt={"Enter your Email Id"}
-            name={"email"}
-            type={"email"}
-            onChangeFunc={onChange}
-            title={"Email Id"}
-          />
-          <TextInputHelper
-            placeholderTxt={"Select a Password"}
-            name={"password"}
-            type={"password"}
-            onChangeFunc={onChange}
-            title={"Password"}
-          />
+          <div onClick={handleCancel}><CrossIcon /></div>
+          <Stack sx={{ p: 5 }} spacing={3}>
+            <InputField
+              label={"Name"}
+              name={"name"}
+              onChangeFunc={onChange}
+              title={"Full Name"}
+            />
+            <InputField
+              label={"Phone Number"}
+              name={"phone"}
+              onChangeFunc={onChange}
+              title={"Phone Number"}
+            />
+            <InputField
+              label={"Email"}
+              name={"email"}
+              type={"email"}
+              onChangeFunc={onChange}
+              title={"Email Id"}
+            />
+            <InputField
+              label={"Password"}
+              name={"password"}
+              type={"password"}
+              onChangeFunc={onChange}
+              title={"Password"}
+            />
+          </Stack>
         </Modal.Body>
         <div style={{ display: "flex", marginBottom: "20px" }}>
           <center style={{ marginLeft: "auto", marginRight: "auto" }}>

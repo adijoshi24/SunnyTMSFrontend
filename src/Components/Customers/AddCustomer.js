@@ -13,7 +13,9 @@ import {
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { BsChevronDown } from "react-icons/bs";
+import {ImCross} from 'react-icons/im'
 import { TextField, makeStyles } from "@material-ui/core";
+import CrossIcon from "../Atoms/CrossIcon";
 const usePlaceholderStyles = makeStyles((theme) => ({
   placeholder: {
     color: "#aaa",
@@ -72,7 +74,7 @@ const AddCustomer = (props) => {
       <Modal show={modal} onHide={handleCancel} className="addCustomerModal">
         <form encType="multipart/form-data">
           <Modal.Body>
-            <ModalCloseHelper clickFunc={handleCancel} />
+            <div onClick={handleCancel}><CrossIcon /></div>
             <TextInputHelper
               placeholderTxt={"Customer Name"}
               name={"customerFullName"}

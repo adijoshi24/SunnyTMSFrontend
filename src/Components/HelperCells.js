@@ -69,6 +69,7 @@ export const FooterHelper = ({
   grLinkNext,
   grLinkPrevious,
   buttonText,
+  showEditIcon=false,
 }) => {
   return (
     <div style={{ display: "flex", marginBottom: "20px" }}>
@@ -98,7 +99,7 @@ export const FooterHelper = ({
         )}
         {editRecord ? (
           <button className="addButton" onClick={editRecord}>
-            <AiFillEdit />
+            {showEditIcon && <AiFillEdit />}
             {buttonText ? buttonText : "Update"}
           </button>
         ) : (
