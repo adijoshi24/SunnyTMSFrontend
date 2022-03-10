@@ -96,7 +96,6 @@ const OperationsTeam = (props) => {
             margin: "2%",
             height: "auto",
             paddingBottom: "20px",
-            width: "1090px",
           }}
         >
           <BootstrapTableHelper

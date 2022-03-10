@@ -3,7 +3,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { MdPeopleOutline } from "react-icons/md";
 import { ImStack } from "react-icons/im";
-import { HiOutlineMail } from "react-icons/hi";
+import {FaUser} from "react-icons/fa"
 
 export const SidebarData = [
   {
@@ -37,7 +37,7 @@ export const SidebarData = [
   {
     title: "Customer Reps",
     path: "/customer-reps",
-    icon: <HiOutlineMail />,
+    icon: <FaUser />,
     cName: "nav-text",
     userRole: [
       "admin",

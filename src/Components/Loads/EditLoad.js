@@ -8,7 +8,7 @@ import {GrLinkNext} from "react-icons/gr";
 import {FaTools} from "react-icons/fa";
 import {MdContentCopy} from "react-icons/md";
 import {MenuItem, TextField} from "@material-ui/core";
-import {Box, Stack} from "@mui/material";
+import {Box, Grid, Stack} from "@mui/material";
 import {IconContext} from "react-icons";
 import {useSelector} from "react-redux";
 import {
@@ -302,7 +302,7 @@ const EditLoad = (props) => {
                         {/* column 1 */}
                         <div className="editLoadColumns" style={{width: "30%"}}>
                             <div className="pickupDetails">
-                                <h6>Pickup</h6>
+                                <h6 className={'loads-subHeading'}>Pickup</h6>
                                 <div>
                                     <p style={{marginBottom: "0.5rem"}}>
                                         {loadDetail.pickShipperName}
@@ -352,7 +352,7 @@ const EditLoad = (props) => {
                         <div className="editLoadColumns" style={{width: "30%"}}>
                             <div className="dropDetails">
                                 <div>
-                                    <h6>Drop</h6>
+                                    <h6 className='loads-subHeading'>Drop</h6>
                                     <p style={{marginBottom: "0.5rem"}}>
                                         {loadDetail.dropReceiverName}
                                         <br/>
@@ -371,7 +371,7 @@ const EditLoad = (props) => {
                             className="editLoadColumns"
                             style={{width: "30%", textAlign: "center"}}
                         >
-                            <h6>Pickup Time</h6>
+                            <h6 className='loads-subHeading'>Pickup Time</h6>
                             <div style={{display: "flex", justifyContent: "space-between"}}>
                                 {/* <p>Aug, 2 08:00</p> */}
                                 <DesktopDatePicker
@@ -466,7 +466,7 @@ const EditLoad = (props) => {
                             className="editLoadColumns"
                             style={{width: "30%", textAlign: "center"}}
                         >
-                            <h6>Drop Time</h6>
+                            <h6 className='loads-subHeading'>Drop Time</h6>
                             <div style={{display: "flex", justifyContent: "space-between"}}>
                                 {/* <p>Aug, 2 08:00</p> */}
                                 <DesktopDatePicker
@@ -536,39 +536,34 @@ const EditLoad = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div style={{display: "flex"}}>
+                    <Grid container sx={{pl: 3, pr: 3}}>
                         {/* column 1 */}
-                        <div className="editLoadColumns" style={{width: "34%"}}>
-                            <div className="pickupDetails">
-                                <div>
-                                    <Stack spacing={2}>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> PO#: </b>
-                                            {loadDetail.pickPONumber}
-                                        </Stack>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> Reference#:</b> {loadDetail.pickReferenceId}
-                                        </Stack>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> Pickup#:</b> To Be Decided
-                                        </Stack>
+                        <Grid item sm={4}>
+                            <div>
+                                <Stack spacing={2} sx={{ml: 7}}>
+                                    <Stack direction='row'>
+                                        <b> PO#: </b>
+                                        {loadDetail.pickPONumber}
                                     </Stack>
-                                    <InputField
-                                        name='pickNotes'
-                                        value={loadDetail.pickNotes || ''}
-                                        onChange={onChange}
-                                        as={'textarea'}
-                                        rows={7}
-                                        formGrpStyle={{marginTop: 15}}
-                                    />
-                                </div>
+                                    <Stack direction='row'>
+                                        <b> Reference#:</b> {loadDetail.pickReferenceId}
+                                    </Stack>
+                                    <Stack direction='row'>
+                                        <b> Pickup#:</b> To Be Decided
+                                    </Stack>
+                                </Stack>
+                                <InputField
+                                    name='pickNotes'
+                                    value={loadDetail.pickNotes || ''}
+                                    onChange={onChange}
+                                    as={'textarea'}
+                                    rows={7}
+                                    formGrpStyle={{marginTop: 15}}
+                                />
                             </div>
-                        </div>
+                        </Grid>
                         {/* column 2 */}
-                        <div
-                            className="editLoadColumns"
-                            style={{width: "32%", verticalAlign: "center"}}
-                        >
+                        <Grid item sm={4}>
                             <p
                                 style={{
                                     width: "60%",
@@ -581,35 +576,33 @@ const EditLoad = (props) => {
                                 <b>Weight: </b>
                                 {loadDetail.pickWeight} lbs
                             </p>
-                        </div>
+                        </Grid>
                         {/* column 3 */}
-                        <div className="editLoadColumns" style={{width: "34%"}}>
-                            <div className="dropDetails">
-                                <div>
-                                    <Stack spacing={2}>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> PO#: </b>
-                                            {loadDetail.dropPONumber}
-                                        </Stack>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> Reference#:</b> {loadDetail.dropReferenceId}
-                                        </Stack>
-                                        <Stack direction='row' justifyContent={'center'}>
-                                            <b> Pickup#:</b> To Be Decided
-                                        </Stack>
+                        <Grid item sm={4}>
+                            <div>
+                                <Stack spacing={2} sx={{ml: 5}}>
+                                    <Stack direction='row'>
+                                        <b> PO#: </b>
+                                        {loadDetail.dropPONumber}
                                     </Stack>
-                                    <InputField
-                                        name='pickNotes'
-                                        value={loadDetail.dropNotes || ''}
-                                        onChange={onChange}
-                                        as={'textarea'}
-                                        rows={7}
-                                        formGrpStyle={{marginTop: 15}}
-                                    />
-                                </div>
+                                    <Stack direction='row'>
+                                        <b> Reference#:</b> {loadDetail.dropReferenceId}
+                                    </Stack>
+                                    <Stack direction='row'>
+                                        <b> Pickup#:</b> To Be Decided
+                                    </Stack>
+                                </Stack>
+                                <InputField
+                                    name='dropNotes'
+                                    value={loadDetail.dropNotes || ''}
+                                    onChange={onChange}
+                                    as={'textarea'}
+                                    rows={7}
+                                    formGrpStyle={{marginTop: 15}}
+                                />
                             </div>
-                        </div>
-                    </div>
+                        </Grid>
+                    </Grid>
                 </Modal.Body>
                 <FooterHelper
                     buttonText="Create Rate Confirmation"
@@ -643,21 +636,29 @@ const EditLoad = (props) => {
               </div>
             </IconContext.Provider>
           </span>
-          <Stack
-              sx={{
-                  m: "auto",
-                  mt: -5
-              }}
-          >
-              <Stack direction='row'>
-                  <Box sx={{color: '#F5292F', border: `1px solid #F5292F`, p: 1, borderRadius: '11px', cursor: 'pointer', mb: 2}}>
-                      Create Rate Confirmation
-                  </Box>
-              </Stack>
-            <Stack direction='row' alignItems='center'>
-                Download Rate Confirmation <AiOutlineArrowDown style={{marginLeft: 5, fontWeight: 500}}/>
-            </Stack>
-          </Stack>
+                    <Stack
+                        sx={{
+                            m: "auto",
+                            mt: -5
+                        }}
+                    >
+                        <Stack direction='row'>
+                            <Box sx={{
+                                color: '#F5292F',
+                                fontWeight: 'bold',
+                                border: `1px solid #F5292F`,
+                                p: 1,
+                                borderRadius: '11px',
+                                cursor: 'pointer',
+                                mb: 2
+                            }}>
+                                Create Rate Confirmation
+                            </Box>
+                        </Stack>
+                        <Stack direction='row' alignItems='center'>
+                            Download Rate Confirmation <AiOutlineArrowDown style={{marginLeft: 5, fontWeight: 500}}/>
+                        </Stack>
+                    </Stack>
                 </div>
             </form>
         </Modal>
