@@ -1,0 +1,43 @@
+.loginEmail{
+    outline: none;
+    padding: 8px 5px;
+    width: 100%;
+}
+
+.textFieldBase{
+    box-shadow: 0 1px 3px #32325D26;
+    border: none;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon{
+    position: absolute;
+    left: 10px;
+}
+
+.loginFormContainer{
+    padding: 5rem 3rem;
+}
+
+.submitButton{
+    padding: 0.7rem;
+    height: auto;
+    width: 20%;
+    margin: auto;
+}
+
+.submitButton:hover{
+    padding: 0.7rem;
+    height: auto;
+    margin: 0;
+}

@@ -46,7 +46,7 @@ const Loads = (props) => {
       .then((res) => {
         setAllLoads(res.data.loadList);
         setShowAddModal(false);
-        console.log("allLoads", allLoads, res.data.loadList);
+        // console.log("allLoads", allLoads, res.data.loadList);
       })
       .catch((err) => {
         console.log(err);
@@ -114,7 +114,7 @@ const Loads = (props) => {
         (user.role == "customerRep" && user.name == item.customerRep)
       );
     });
-  console.log("user, myFilteredData, allLoads", user, OTCR);
+  // console.log("user, myFilteredData, allLoads", user, OTCR);
   const myData =
     myFilteredData &&
     myFilteredData.map((item, i) => ({
