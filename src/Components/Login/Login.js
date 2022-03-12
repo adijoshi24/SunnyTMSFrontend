@@ -35,7 +35,6 @@ const Login = (props) => {
   // Submit Function
   const submitLogin = (e) => {
     e.preventDefault();
-    const {email, password} = formData;
     const validate = validateEmpty(formData);
     if(!validate) {
         setErrors({email: 'Please enter Email', password: 'Please enter Password'});
@@ -48,7 +47,7 @@ const Login = (props) => {
           return;
       }
     axios
-      .post("http://localhost:5000/api/login", {email, password})
+      .post("http://localhost:5000/api/login", {...formData})
       .then((res) => {
         if (res.status === 200) {
           dispatch(signinSuccess(res && res));
