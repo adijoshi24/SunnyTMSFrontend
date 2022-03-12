@@ -132,54 +132,6 @@ const Login = (props) => {
                             </button>
                         </div>
                     </Stack>
-                    {/*<TextField*/}
-                    {/*    disableUnderline*/}
-                    {/*    required*/}
-                    {/*    // label="Username/Email"*/}
-                    {/*    variant="filled"*/}
-                    {/*    // className="loginTextFields"*/}
-                    {/*    className={classes.root}*/}
-                    {/*    name="email"*/}
-                    {/*    placeholder='Email'*/}
-                    {/*    onChange={(e) => setEmail(e.target.value)}*/}
-                    {/*    InputProps={{*/}
-                    {/*        style: {*/}
-                    {/*            backgroundColor: "white",*/}
-                    {/*            border: "1px solid lightgrey",*/}
-                    {/*            verticalAlign: "centre",*/}
-                    {/*        },*/}
-                    {/*        startAdornment: (*/}
-                    {/*            <InputAdornment position="start">*/}
-                    {/*                <MdEmail style={{ color: "#ADB5BD" }} />*/}
-                    {/*            </InputAdornment>*/}
-                    {/*        ),*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    {/*<TextField*/}
-                    {/*    disableUnderline*/}
-                    {/*    required*/}
-                    {/*    // label="Password"*/}
-                    {/*    type="password"*/}
-                    {/*    autoComplete="current-password"*/}
-                    {/*    variant="filled"*/}
-                    {/*    placeholder='Password'*/}
-                    {/*    // className="loginTextFields"*/}
-                    {/*    className={classes.root}*/}
-                    {/*    name="password"*/}
-                    {/*    onChange={(e) => setPassword(e.target.value)}*/}
-                    {/*    InputProps={{*/}
-                    {/*        style: {*/}
-                    {/*            backgroundColor: "white",*/}
-                    {/*            border: "1px solid lightgrey",*/}
-                    {/*        },*/}
-                    {/*        startAdornment: (*/}
-                    {/*            <InputAdornment position="start">*/}
-                    {/*                <FaUnlockAlt style={{ color: "#ADB5BD" }} />*/}
-                    {/*            </InputAdornment>*/}
-                    {/*        ),*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    
                 </form>
             </div>
         </Paper>
