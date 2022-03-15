@@ -13,7 +13,7 @@ import {
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { BsChevronDown } from "react-icons/bs";
-import {ImCross} from 'react-icons/im'
+import { ImCross } from "react-icons/im";
 import { TextField, makeStyles } from "@material-ui/core";
 import CrossIcon from "../Atoms/CrossIcon";
 const usePlaceholderStyles = makeStyles((theme) => ({
@@ -44,6 +44,7 @@ const AddCustomer = (props) => {
   const addCustomer = (e) => {
     e.preventDefault();
     let data = newCustomer;
+    debugger;
 
     axios
       .post("http://localhost:5000/api/customer/add", data)
@@ -55,7 +56,7 @@ const AddCustomer = (props) => {
           handleCancel();
           props.allCustomerList();
         } else {
-          toast.error("Customer  addition Unsuccessful!", {
+          toast.error("Customer addition Unsuccessful!", {
             position: toast.POSITION.TOP_RIGHT,
           });
         }
@@ -74,7 +75,9 @@ const AddCustomer = (props) => {
       <Modal show={modal} onHide={handleCancel} className="addCustomerModal">
         <form encType="multipart/form-data">
           <Modal.Body>
-            <div onClick={handleCancel}><CrossIcon /></div>
+            <div onClick={handleCancel}>
+              <CrossIcon />
+            </div>
             <TextInputHelper
               placeholderTxt={"Customer Name"}
               name={"customerFullName"}
@@ -92,6 +95,7 @@ const AddCustomer = (props) => {
               name={"phone"}
               onChangeFunc={onChange}
               title={"Phone Number"}
+              type="number"
             />
             <TextInputHelper
               placeholderTxt={"Email"}
@@ -109,8 +113,16 @@ const AddCustomer = (props) => {
             <TextInputHelper
               placeholderTxt={"Account Payable Email"}
               name={"accountPayableEmail"}
+              type={"email"}
               onChangeFunc={onChange}
               title={"Account Payable Email"}
+            />
+            <TextInputHelper
+              placeholderTxt={"Account Payable Phone Number"}
+              name={"accountPayablePhoneNumber"}
+              onChangeFunc={onChange}
+              title={"Account Payable Phone Number"}
+              type="number"
             />
             {props.customerRep.role == "admin" && (
               <>

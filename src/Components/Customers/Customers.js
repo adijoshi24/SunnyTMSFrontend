@@ -18,6 +18,7 @@ const Customers = (props) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [allCustomerReps, setAllCustomerReps] = useState();
   const [allCustomers, setAllCustomers] = useState();
+  const [allOperationsTeams, setAllOperationsTeams] = useState();
   const [rowDetails, setRow] = useState(0);
   const user = useSelector((state) => state.Login);
 
@@ -27,6 +28,9 @@ const Customers = (props) => {
     }
     allCustomerList();
     customerReps();
+    if (user.role == "Customer Operations") {
+      allOperationsTeamList();
+    }
   }, []);
   // Fetch Customer Data function
   const allCustomerList = () => {
@@ -50,6 +54,21 @@ const Customers = (props) => {
         catchError(err);
       });
   };
+  const allOperationsTeamList = () => {
+    axios
+      .post("http://localhost:5000/api/operations-team", user)
+      .then((res) => {
+        const OTreps = res.data.operationsTeamList.map((item) => {
+          return item.name;
+        });
+        console.log("OTreps", OTreps);
+        setAllOperationsTeams(res.data.operationsTeamList);
+      })
+      .catch((err) => {
+        catchError(err);
+      });
+  };
+  console.log("allOperationsTeams", allOperationsTeams);
   // Modal box Open function via state change
   const openAddModal = () => {
     setShowAddModal(true);
@@ -67,11 +86,13 @@ const Customers = (props) => {
     allCustomers.filter(
       (item) =>
         user.role == "admin" ||
-        (user.role == "customerRep" && user.name == item.customerRep)
+        (user.role == "customerRep" && user.name == item.customerRep) ||
+        (user.role == "Customer Operations" && item.customerRep)
     );
   const myData =
     myFilteredData &&
     myFilteredData.map((item, i) => ({
+      _id: item._id,
       customerFullName: item.customerFullName,
       shippingManager: item.shippingManager,
       phone: item.phone,

@@ -3,7 +3,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { MdPeopleOutline } from "react-icons/md";
 import { ImStack } from "react-icons/im";
-import {FaUser} from "react-icons/fa"
+import { FaUser } from "react-icons/fa";
 
 export const SidebarData = [
   {
@@ -44,7 +44,6 @@ export const SidebarData = [
       "Carrier Operations",
       "After Hour Operations",
       "Operations Manager",
-      "Customer Operations",
     ], //Means customer Reps with role==2 do not have permission to view this
   },
   {

@@ -21,16 +21,23 @@ export const Logo = ({ clickFunc, style }) => {
     </p>
   );
 };
-export const ModalCloseHelper = ({ clickFunc, header, showClose=false, divStyle={} }) => {
+export const ModalCloseHelper = ({
+  clickFunc,
+  header,
+  showClose = false,
+  divStyle = {},
+}) => {
   return (
     <>
       <div style={{ display: "flex", ...divStyle }}>
         <center style={{ margin: "auto" }}>
           <h4>{header}</h4>
         </center>
-        {showClose && <p className="modalClose" onClick={clickFunc}>
-          X
-        </p>}
+        {showClose && (
+          <p className="modalClose" onClick={clickFunc}>
+            X
+          </p>
+        )}
       </div>
       <br></br>
     </>
@@ -69,7 +76,7 @@ export const FooterHelper = ({
   grLinkNext,
   grLinkPrevious,
   buttonText,
-  showEditIcon=false,
+  showEditIcon = false,
 }) => {
   return (
     <div style={{ display: "flex", marginBottom: "20px" }}>
@@ -209,7 +216,7 @@ export const TextAreaHelper = ({
   name,
   onChangeFunc,
   defaultValueField,
-                                 label=''
+  label = "",
 }) => {
   return (
     <>

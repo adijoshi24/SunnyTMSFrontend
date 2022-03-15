@@ -17,20 +17,23 @@ import { Stack } from "@mui/material";
 
 const EditModal = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
-  const [customerRep, setCustomerRep] = useState(props.customerRep);
+  const [customerRep, setCustomerRep] = useState({
+    ...props.customerRep,
+    confirmPassword: props.customerRep.password,
+  });
 
   // componentWillReceiveProps(nextProps) {
   //   this.setState({ modal: nextProps.showEditModal });
   // }
   //Onchange
   const onChange = (e) => {
+    console.log("e", e);
     onChangeHelper(customerRep, setCustomerRep, e);
   };
   // Edit Password Function
   const editCustomerRep = (e) => {
     e.preventDefault();
     let data = customerRep;
-
     if (customerRep.password === customerRep.confirmPassword) {
       axios
         .post("http://localhost:5000/api/customer-rep/edit-customer-rep", data)
@@ -96,38 +99,42 @@ const EditModal = (props) => {
     >
       <form encType="multipart/form-data">
         <Modal.Body>
-          <div onClick={handleEditCancel}><CrossIcon style={{ marginBottom: 10 }} /></div>
-          <Stack spacing={3} sx={{p:5}}>
-            <InputField
-              label={"Name"}
+          <div onClick={handleEditCancel}>
+            <CrossIcon style={{ marginBottom: 10 }} />
+          </div>
+          <Stack spacing={3} sx={{ p: 5 }}>
+            <TextInputHelper
+              title={"Name"}
               name={"name"}
               onChangeFunc={onChange}
-              value={customerRep && customerRep.name}
+              defaultValueField={customerRep.name}
             />
-            <InputField
-              label={"Phone Number"}
+            <TextInputHelper
+              title={"Phone Number"}
               name={"phone"}
               onChangeFunc={onChange}
-              value={customerRep && customerRep.phone}
+              defaultValueField={customerRep.phone}
             />
-            <InputField
-              label={"Email"}
+            <TextInputHelper
+              title={"Email"}
               name={"email"}
               type={"email"}
               onChangeFunc={onChange}
-              value={customerRep && customerRep.email}
+              defaultValueField={customerRep.email}
             />
-            <InputField
-              label={"Password"}
+            <TextInputHelper
+              title={"Password"}
               name={"password"}
               type={"password"}
               onChangeFunc={onChange}
+              defaultValueField={customerRep.password}
             />
-            <InputField
-              label={"Confirm Password"}
+            <TextInputHelper
+              title={"Confirm Password"}
               name={"confirmPassword"}
               type={"password"}
               onChangeFunc={onChange}
+              defaultValueField={customerRep.confirmPassword}
             />
           </Stack>
         </Modal.Body>

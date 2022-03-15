@@ -363,8 +363,8 @@ td {
   word-break: break-all;
 }
 .titleAdd {
-  margin-left: 5%;
-  margin-top: 10px;
+  margin-left: 5% !important;
+  margin-top: 10px !important;
 }
 
 .logoMain {
@@ -401,10 +401,10 @@ td {
 }
 /* Select Helper End */
 
-.crossIcon:hover{
+.crossIcon:hover {
   cursor: pointer;
 }
 
-.loads-subHeading{
+.loads-subHeading {
   font-weight: bold;
 }

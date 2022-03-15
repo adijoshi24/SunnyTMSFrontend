@@ -131,6 +131,7 @@ const Loads = (props) => {
       status: item.status,
       customer: item.customerName,
     }));
+    console.log("myData", myData);
   const tableRowEvents = {
     onClick: (e, row, rowIndex) => {
       setRowIndex(rowIndex);

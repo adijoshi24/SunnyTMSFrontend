@@ -11,7 +11,7 @@ import {
   SelectHelper,
   TextInputHelper,
 } from "../HelperCells";
-import CrossIcon from '../Atoms/CrossIcon'
+import CrossIcon from "../Atoms/CrossIcon";
 
 const EditCustomer = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
@@ -87,7 +87,9 @@ const EditCustomer = (props) => {
     <Modal show={modal} onHide={handleEditCancel}>
       <form encType="multipart/form-data">
         <Modal.Body>
-          <div onClick={handleEditCancel}><CrossIcon /></div>
+          <div onClick={handleEditCancel}>
+            <CrossIcon />
+          </div>
           <TextInputHelper
             placeholderTxt={"Customer Name"}
             name={"customerFullName"}
@@ -108,6 +110,7 @@ const EditCustomer = (props) => {
             onChangeFunc={onChange}
             defaultValueField={customer.phone}
             title={"Phone Number"}
+            type={"number"}
           />
           <TextInputHelper
             placeholderTxt={"Email"}
@@ -130,6 +133,15 @@ const EditCustomer = (props) => {
             onChangeFunc={onChange}
             defaultValueField={customer.accountPayableEmail}
             title={"Account Payable Email"}
+            type={"email"}
+          />
+          <TextInputHelper
+            placeholderTxt={"Account Payable Phone Number"}
+            name={"accountPayablePhoneNumber"}
+            onChangeFunc={onChange}
+            title={"Account Payable Phone Number"}
+            defaultValueField={customer.accountPayablePhoneNumber}
+            type={"number"}
           />
           {props.customerRep.role == "admin" && (
             <>

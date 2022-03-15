@@ -18,7 +18,8 @@ import {
 } from "../HelperCells";
 import makeStyles from "@material-ui/styles/makeStyles";
 import InputField from "../Atoms/form/InputField";
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
+import { dummyAddLoad } from "./TableConfig";
 const useStyles = makeStyles({
   root: {
     "& MuiFormControl-root": {
@@ -43,13 +44,10 @@ const useStyles = makeStyles({
 const AddLoad = (props) => {
   const [modal, setModal] = useState(props.showAddModal);
   const [index, setIndex] = useState(0);
+  const [validation, setValidation] = useState({ dummyAddLoad });
   const [newLoad, setNewLoad] = useState({
-    pickDate: new Date(),
-    dropDate: new Date(),
+    ...dummyAddLoad,
     customerRep: props.user.name,
-    loadID: Math.round(Math.random() * 10000000),
-    pickTime: "10:00",
-    dropTime: "10:00",
   });
   const classes = useStyles();
   // componentWillReceiveProps(nextProps) {
@@ -93,6 +91,7 @@ const AddLoad = (props) => {
   const addLoad = (e) => {
     e.preventDefault();
     let data = newLoad;
+    console.log("newLoad", newLoad);
     axios
       .post("http://localhost:5000/api/load/add-load", data)
       .then((res) => {
@@ -118,7 +117,6 @@ const AddLoad = (props) => {
   const handleSelectPrevious = (e) => {
     setIndex(index != 0 ? index - 1 : index);
   };
-
   return (
     <Modal show={modal} onHide={handleCancel} className="addLoad" centered>
       <form encType="multipart/form-data">
@@ -131,7 +129,10 @@ const AddLoad = (props) => {
           >
             {/* index 0 (Customer info / load #) */}
             <Carousel.Item>
-              <ModalCloseHelper header={"New Load"} divStyle={{marginBottom: '5rem', fontSize: 17}} />
+              <ModalCloseHelper
+                header={"New Load"}
+                divStyle={{ marginBottom: "5rem", fontSize: 17 }}
+              />
               <SelectHelper
                 name={"customerName"}
                 onChangeFunc={onChange}
@@ -351,9 +352,9 @@ const AddLoad = (props) => {
                 name={"pickCarrierNotes"}
                 onChange={onChange}
                 label={"Carrier Notes"}
-                as={'textarea'}
+                as={"textarea"}
                 rows={15}
-                className={'shadow-none'}
+                className={"shadow-none"}
               />
             </Carousel.Item>
             {/* index 5 (Drop name,address etc) */}
@@ -469,37 +470,36 @@ const AddLoad = (props) => {
             <Carousel.Item>
               <ModalCloseHelper clickFunc={handleCancel} header={"Delivery"} />
               <InputField
-                  name={"dropCarrierNotes"}
-                  onChange={onChange}
-                  label={"Carrier Notes"}
-                  as={'textarea'}
-                  rows={15}
-                  className={'shadow-none'}
+                name={"dropCarrierNotes"}
+                onChange={onChange}
+                label={"Carrier Notes"}
+                as={"textarea"}
+                rows={15}
+                className={"shadow-none"}
               />
             </Carousel.Item>
           </Carousel>
         </Modal.Body>
         <div style={{ display: "flex" }}>
-          <Grid container justifyContent={'space-between'} sx={{p:2}}>
-            <Grid item sx={{ml: 1, mt: 3}}>
+          <Grid container justifyContent={"space-between"} sx={{ p: 2 }}>
+            <Grid item sx={{ ml: 1, mt: 3 }}>
               <AiOutlineLeft
-                  onClick={() => handleSelectPrevious()}
-                  style={
-                    index === 0
-                        ? { display: "none" }
-                        : { display: "block", cursor: 'pointer',}
-                  }
-                  className="loadModalDirectionButton"
+                onClick={() => handleSelectPrevious()}
+                style={
+                  index === 0
+                    ? { display: "none" }
+                    : { display: "block", cursor: "pointer" }
+                }
+                className="loadModalDirectionButton"
               />
             </Grid>
-            {index === 7 && <Grid item sx={{mt: 3}}>
-              <button
-                  className="addButton"
-                  onClick={addLoad}
-              >
-                Create Load
-              </button>
-            </Grid>}
+            {index === 7 && (
+              <Grid item sx={{ mt: 3 }}>
+                <button className="addButton" onClick={addLoad}>
+                  Create Load
+                </button>
+              </Grid>
+            )}
           </Grid>
           <AiOutlineRight
             size={70}
@@ -511,9 +511,9 @@ const AddLoad = (props) => {
                     display: "block",
                     marginLeft: "auto",
                     marginRight: "25px",
-                    marginBottom: '3rem',
-                    marginTop: '3rem',
-                    cursor: 'pointer'
+                    marginBottom: "3rem",
+                    marginTop: "3rem",
+                    cursor: "pointer",
                   }
             }
             className="loadModalDirectionButton"
