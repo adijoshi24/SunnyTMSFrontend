@@ -5,17 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import {
   catchError,
-  ModalCloseHelper,
+  CloseIcon,
   onChangeHelper,
   SelectHelper,
   TextInputHelper,
 } from "../HelperCells";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import { BsChevronDown } from "react-icons/bs";
-import { ImCross } from "react-icons/im";
-import { TextField, makeStyles } from "@material-ui/core";
-import CrossIcon from "../Atoms/CrossIcon";
+import { makeStyles } from "@material-ui/core";
 const usePlaceholderStyles = makeStyles((theme) => ({
   placeholder: {
     color: "#aaa",
@@ -44,7 +39,6 @@ const AddCustomer = (props) => {
   const addCustomer = (e) => {
     e.preventDefault();
     let data = newCustomer;
-    debugger;
 
     axios
       .post("http://localhost:5000/api/customer/add", data)
@@ -75,9 +69,7 @@ const AddCustomer = (props) => {
       <Modal show={modal} onHide={handleCancel} className="addCustomerModal">
         <form encType="multipart/form-data">
           <Modal.Body>
-            <div onClick={handleCancel}>
-              <CrossIcon />
-            </div>
+            <CloseIcon clickFunc={handleCancel} />
             <TextInputHelper
               placeholderTxt={"Customer Name"}
               name={"customerFullName"}

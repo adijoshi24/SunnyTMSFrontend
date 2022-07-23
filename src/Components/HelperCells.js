@@ -7,12 +7,9 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import pageButtonRenderer from "./PageButtonRenderer";
 import Select from "@material-ui/core/Select";
-import { InputAdornment } from "@mui/material";
 import { BsChevronDown } from "react-icons/bs";
-import Input from "@mui/material/Input";
-import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
-import makeStyles from "@material-ui/styles/makeStyles";
+import CrossIcon from "./Atoms/CrossIcon";
 
 export const Logo = ({ clickFunc, style }) => {
   return (
@@ -21,23 +18,28 @@ export const Logo = ({ clickFunc, style }) => {
     </p>
   );
 };
-export const ModalCloseHelper = ({
-  clickFunc,
-  header,
-  showClose = false,
-  divStyle = {},
-}) => {
+export const ModalCloseHelper = ({ clickFunc, header, divStyle = {} }) => {
   return (
     <>
       <div style={{ display: "flex", ...divStyle }}>
+        <p className="modalClose" onClick={clickFunc}>
+          <CrossIcon />
+        </p>
         <center style={{ margin: "auto" }}>
           <h4>{header}</h4>
         </center>
-        {showClose && (
-          <p className="modalClose" onClick={clickFunc}>
-            X
-          </p>
-        )}
+      </div>
+      <br></br>
+    </>
+  );
+};
+export const CloseIcon = ({ clickFunc, divStyle = {} }) => {
+  return (
+    <>
+      <div style={{ display: "flex", ...divStyle }}>
+        <p className="modalClose" onClick={clickFunc}>
+          <CrossIcon />
+        </p>
       </div>
       <br></br>
     </>

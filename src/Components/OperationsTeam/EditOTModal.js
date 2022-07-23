@@ -6,6 +6,7 @@ import axios from "axios";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import {
   catchError,
+  CloseIcon,
   FooterHelper,
   ModalCloseHelper,
   ModalSelectHelper,
@@ -96,7 +97,7 @@ const EditOTModal = (props) => {
     <Modal show={modal} onHide={handleEditCancel}>
       <form encType="multipart/form-data">
         <Modal.Body>
-          <ModalCloseHelper clickFunc={handleEditCancel} />
+          <CloseIcon clickFunc={handleEditCancel} />
           <span className="titleAdd">Role</span>
           <ModalSelectHelper
             name={"role"}

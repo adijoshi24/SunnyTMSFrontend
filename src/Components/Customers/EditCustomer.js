@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import {
   catchError,
+  CloseIcon,
   FooterHelper,
-  ModalCloseHelper,
   onChangeHelper,
   SelectHelper,
   TextInputHelper,
 } from "../HelperCells";
-import CrossIcon from "../Atoms/CrossIcon";
 
 const EditCustomer = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
@@ -87,9 +86,7 @@ const EditCustomer = (props) => {
     <Modal show={modal} onHide={handleEditCancel}>
       <form encType="multipart/form-data">
         <Modal.Body>
-          <div onClick={handleEditCancel}>
-            <CrossIcon />
-          </div>
+          <CloseIcon clickFunc={handleEditCancel} />
           <TextInputHelper
             placeholderTxt={"Customer Name"}
             name={"customerFullName"}

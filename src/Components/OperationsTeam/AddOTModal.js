@@ -57,7 +57,7 @@ const AddOTModal = (props) => {
     <Modal show={modal} onHide={handleCancel} className="addOTModal">
       <form encType="multipart/form-data">
         <Modal.Body>
-          <ModalCloseHelper clickFunc={handleCancel} />{" "}
+          <ModalCloseHelper clickFunc={handleCancel} />
           <span className="titleAdd">Role</span>
           <SelectHelper
             placeholderTxt={"Role"}

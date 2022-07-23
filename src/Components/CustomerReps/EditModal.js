@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import {
   catchError,
+  CloseIcon,
   FooterHelper,
-  ModalCloseHelper,
   onChangeHelper,
   TextInputHelper,
 } from "../HelperCells";
-import CrossIcon from "../Atoms/CrossIcon";
-import InputField from "../Atoms/form/InputField";
-import { Stack } from "@mui/material";
 
 const EditModal = (props) => {
   const [modal, setModal] = useState(props.showEditModal);
@@ -99,44 +95,40 @@ const EditModal = (props) => {
     >
       <form encType="multipart/form-data">
         <Modal.Body>
-          <div onClick={handleEditCancel}>
-            <CrossIcon style={{ marginBottom: 10 }} />
-          </div>
-          <Stack spacing={3} sx={{ p: 5 }}>
-            <TextInputHelper
-              title={"Name"}
-              name={"name"}
-              onChangeFunc={onChange}
-              defaultValueField={customerRep.name}
-            />
-            <TextInputHelper
-              title={"Phone Number"}
-              name={"phone"}
-              onChangeFunc={onChange}
-              defaultValueField={customerRep.phone}
-            />
-            <TextInputHelper
-              title={"Email"}
-              name={"email"}
-              type={"email"}
-              onChangeFunc={onChange}
-              defaultValueField={customerRep.email}
-            />
-            <TextInputHelper
-              title={"Password"}
-              name={"password"}
-              type={"password"}
-              onChangeFunc={onChange}
-              defaultValueField={customerRep.password}
-            />
-            <TextInputHelper
-              title={"Confirm Password"}
-              name={"confirmPassword"}
-              type={"password"}
-              onChangeFunc={onChange}
-              defaultValueField={customerRep.confirmPassword}
-            />
-          </Stack>
+          <CloseIcon clickFunc={handleEditCancel} />
+          <TextInputHelper
+            title={"Name"}
+            name={"name"}
+            onChangeFunc={onChange}
+            defaultValueField={customerRep.name}
+          />
+          <TextInputHelper
+            title={"Phone Number"}
+            name={"phone"}
+            onChangeFunc={onChange}
+            defaultValueField={customerRep.phone}
+          />
+          <TextInputHelper
+            title={"Email"}
+            name={"email"}
+            type={"email"}
+            onChangeFunc={onChange}
+            defaultValueField={customerRep.email}
+          />
+          <TextInputHelper
+            title={"Password"}
+            name={"password"}
+            type={"password"}
+            onChangeFunc={onChange}
+            defaultValueField={customerRep.password}
+          />
+          <TextInputHelper
+            title={"Confirm Password"}
+            name={"confirmPassword"}
+            type={"password"}
+            onChangeFunc={onChange}
+            defaultValueField={customerRep.confirmPassword}
+          />
         </Modal.Body>
         <FooterHelper
           // deleteRecord={(e) => deleteCustomerRep(e, customerRep._id)}

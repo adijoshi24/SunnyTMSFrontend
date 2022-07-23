@@ -9,6 +9,7 @@ import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import {
   catchError,
+  CloseIcon,
   ModalCloseHelper,
   onChangeHelper,
   SelectHelper,
@@ -129,10 +130,7 @@ const AddLoad = (props) => {
           >
             {/* index 0 (Customer info / load #) */}
             <Carousel.Item>
-              <ModalCloseHelper
-                header={"New Load"}
-                divStyle={{ marginBottom: "5rem", fontSize: 17 }}
-              />
+              <ModalCloseHelper clickFunc={handleCancel} header={"New Load"} />
               <SelectHelper
                 name={"customerName"}
                 onChangeFunc={onChange}
@@ -347,7 +345,7 @@ const AddLoad = (props) => {
             </Carousel.Item>
             {/* index 4 (carrier notes etc) */}
             <Carousel.Item>
-              <ModalCloseHelper header={"Pickup"} />
+              <ModalCloseHelper clickFunc={handleCancel} header={"Pickup"} />
               <InputField
                 name={"pickCarrierNotes"}
                 onChange={onChange}

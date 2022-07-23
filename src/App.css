@@ -314,8 +314,6 @@ body {
   border: 1px solid #f5292f;
 }
 .modalClose {
-  margin-left: auto;
-  margin-right: 50px;
   cursor: pointer !important;
 }
 .timepicker > .MuiInputBase-root {
