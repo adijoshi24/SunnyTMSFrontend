@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Modal, Carousel } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import { toast } from "react-toastify";
@@ -9,11 +9,9 @@ import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import {
   catchError,
-  CloseIcon,
   ModalCloseHelper,
   onChangeHelper,
   SelectHelper,
-  statesUSA,
   TextAreaHelper,
   TextInputHelper,
 } from "../HelperCells";
@@ -21,6 +19,7 @@ import makeStyles from "@material-ui/styles/makeStyles";
 import InputField from "../Atoms/form/InputField";
 import { Grid } from "@mui/material";
 import { dummyAddLoad } from "./TableConfig";
+import { statesUSA } from "./util";
 const useStyles = makeStyles({
   root: {
     "& MuiFormControl-root": {
